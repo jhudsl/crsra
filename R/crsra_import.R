@@ -1,4 +1,13 @@
 crsra_import <- function(rmd = TRUE, workdir = getwd()) {
+
+    packages <- c("dplyr", "DBI", "RPostgreSQL", "tidytext", "ggplot2", "reshape2", "reshape", "purrr", "plyr", "stringr", "tidytext", "rcorpora", "knitr")
+    instapack <- function(pkg){
+        new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+        if (length(new.pkg)) 
+            install.packages(new.pkg, dependencies = TRUE)
+        sapply(pkg, require, character.only = TRUE)
+    }
+    instapack(packages)
     
     proceedstatus <- readline("The following procedure to import your data may take a while. Do you want to proceed? (y/n): ")
     if (proceedstatus == "y") {
