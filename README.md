@@ -14,9 +14,12 @@ devtools::install_github("ahdvnd/crsra", build_vignettes = TRUE)
 
 This package is written in R and while it creates databases in PostgreSQL (postgres), it requires minimum knowledge of Linux or database management. However, to use the package you will need to have Postgres installed on your machine. 
 PostgreSQL has a community of online resources on how to download, install, and use it. Here are some resources:
-http://postgresguide.com/
-http://www.postgresql.org/docs/9.5/static/tutorial.html
-http://www.postgresqltutorial.com/
+
+- http://postgresguide.com/
+
+- http://www.postgresql.org/docs/9.5/static/tutorial.html
+
+- http://www.postgresqltutorial.com/
 
 
 ## Installation
