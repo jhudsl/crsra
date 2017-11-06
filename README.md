@@ -39,9 +39,13 @@ unzip files and set your working directory to the folder that contains the data 
 
 If you look at the headers that are supplied in the .html files, you see that some of these contain header specifications that are illegal in e.g. MySQL. Additionally, PostGreSQL can import CSV files pretty painlessly. Of course, you can choose to not use these header files and use another database.
 
-## List of Table Names
+## Calling Tables
 
-For a list of all the tables in the data download, please click [here]().
+For a list of all the tables in the data download, please click [here](https://github.com/ahdvnd/crsra/blob/master/ListofTables.md). All tables can be called by the name `all_tables`. For instance, if you like to call the table `peer_comments`, you can simply execulte `all_tables[["peer_comments"]]. If you would like to call the table for one of the courses, you may run `all_tables[["peer_comments"]][[1]]. `1` is the first course imported in the data dump. To see the order of courses imported, check `coursenames`.
+
+## List of Courses
+
+If you are importing data for multiple courses (or a specialization), you do not have to specify the names of the courses. `crsra` will automatically load the courses names from the `courses` table incuded in the data dump of each course. To see a list of all the courses imported, you can call them by `coursenames`.
 
 ## Example
 
