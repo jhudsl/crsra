@@ -9,7 +9,7 @@ install the [devtools package](https://CRAN.R-project.org/package=devtools), ava
 
 ``` r
 #install.packages("devtools")
-devtools::install_github("ahdvnd/crsra", build_vignettes = TRUE)
+devtools::install_github("jhudsl/crsra", build_vignettes = TRUE)
 ```
 
 This package is written in R and while it creates databases in PostgreSQL (postgres), it requires minimum knowledge of Linux or database management. However, to use the package you will need to have Postgres installed on your machine. 
