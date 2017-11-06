@@ -45,7 +45,7 @@ In order to import your data dump into R, first point your working directory to 
 
 ## Calling Tables
 
-For a list of all the tables in the data download, please click [here](https://github.com/ahdvnd/crsra/blob/master/ListofTables.md). All tables can be called by the name `all_tables`. For instance, if you like to call the table `peer_comments`, you can simply execulte `all_tables[["peer_comments"]]`. If you would like to call the table for one of the courses, you may run `r all_tables[["peer_comments"]][[1]]`. `1` is the first course imported in the data dump. To see the order of courses imported, check `coursenames`.
+For a list of all the tables in the data download, please click [here](https://github.com/ahdvnd/crsra/blob/master/ListofTables.md). All tables can be called by the name `all_tables`. For instance, if you like to call the table `peer_comments`, you can simply execulte `all_tables[["peer_comments"]]`. If you would like to call the table for one of the courses, you may run `all_tables[["peer_comments"]][[1]]`. `1` is the first course imported in the data dump. To see the order of courses imported, check `coursenames`.
 
 ## List of Courses
 
@@ -57,7 +57,21 @@ For user convenience, a few other functions are added to the package in addition
 
 ## Example
 
-If you would like to see the the 
+In this example we would like to look at students' average grade in a specific course item (course item `9W3Y2`) in a specific course.
+
+```r
+library(dplyr)
+
+all_tables[["course_item_grades"]][[1]] %>% #1 is the course number associated with the course *Getting and Cleaning Data* in our example.
+    dplyr::filter(course_item_id == "9W3Y2") %>% 
+    dplyr::summarise(grade = mean(course_item_grade_verified))
+    
+# Source:   lazy query [?? x 1]
+# Database: postgres 9.6.5 [postgres@localhost:5432/data_cleaning_1507238182695]
+      grade
+      <dbl>
+1 0.8648031
+```
 
 ## Common mistakes
 
