@@ -21,8 +21,12 @@ PostgreSQL has a community of online resources on how to download, install, and 
 
 - http://www.postgresqltutorial.com/
 
+## Why Postgres
+
+If you look at the headers that are supplied in the .html files, you see that some of these contain header specifications that are illegal in e.g. MySQL. Additionally, PostGreSQL can import CSV files pretty painlessly. Of course, you can choose to not use these header files and use another database.
 
 ## Installation
+
 Once postgres is installed, make sure it is running and that you see the green light showing the posgres is running. Without postgres running you will not be able to import the data.
 
 To install PostGreSQL, please refer to the [official documentation](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
@@ -31,13 +35,7 @@ Then, follow the 'first steps' tutorial [here](https://wiki.postgresql.org/wiki/
 
 unzip files and set your working directory to the folder that contains the data dump (all the unzipped folders).
 
-## Dependencies
-
 ## Update
-
-## Why Postgres
-
-If you look at the headers that are supplied in the .html files, you see that some of these contain header specifications that are illegal in e.g. MySQL. Additionally, PostGreSQL can import CSV files pretty painlessly. Of course, you can choose to not use these header files and use another database.
 
 ## Importing Data
 
