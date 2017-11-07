@@ -57,11 +57,11 @@ For user convenience, a few other functions are added to the package in addition
 
 | Function | Description |
 |----------|-------------------------------------------------------------------|
-| crsra_membershares | Returns a summary of the total number and the shares of users in each course broken down by factors such as roles, country, language, gender, employment status, education level, and student status. |
-| crsra_gradesummary | Returns total grade summary or broken down by the factors mentioned above. |
-| crsra_progress | Summarizes, for each course item, the total number and the share of users who stopped the course at that specific course item. The function ranks course items by their attrition. |
-| crsra_assessmentskips | Users may "skip" reviewing a submission if there is a problem with it. This function categorizes skips by their type such as "inappropriate content", "plagiarism", etc. The function also returns list of mostly used words in peer comments. |
-| crsra_timetofinish | Calculates the time to finish a course for each user. |
+| `crsra_membershares` | Returns a summary of the total number and the shares of users in each course broken down by factors such as roles, country, language, gender, employment status, education level, and student status. |
+| `crsra_gradesummary` | Returns total grade summary or broken down by the factors mentioned above. |
+| `crsra_progress` | Summarizes, for each course item, the total number and the share of users who stopped the course at that specific course item. The function ranks course items by their attrition. |
+| `crsra_assessmentskips` | Users may "skip" reviewing a submission if there is a problem with it. This function categorizes skips by their type such as "inappropriate content", "plagiarism", etc. The function also returns list of mostly used words in peer comments. |
+| `crsra_timetofinish` | Calculates the time to finish a course for each user. |
 
 ## Example
 
