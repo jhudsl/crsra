@@ -65,7 +65,7 @@ For user convenience, a few other functions are added to the package in addition
 
 ## Example
 
-In this example we would like to look at the number of students who passed a specific course item (course item `9W3Y2`) and their average grade in a specific course.
+In order to look at the number of students who passed a specific course item (course item `9W3Y2`) and their average grade in a specific course.
 
 ```r
 library(dplyr)
@@ -82,7 +82,7 @@ all_tables[["course_item_grades"]][[1]] %>% #1 is the course number associated w
 #1 17639 0.9719599
 ```
 
-## Common mistakes
+<!--- ## Common mistakes --->
 
 ## Feedback/Questions
 
@@ -93,5 +93,5 @@ If you have any questions or feedback, please contact me at: hadavand.a[[at]]gma
 
 -   License: MIT
 
--   To cite *crsra*, please use: Aboozar Hadavand (2017). crsra: A package for cleaning and analyzing Coursera on-demand data. https://github.com/ahdvnd/crsra
+-   To cite *crsra*, please use: Aboozar Hadavand, Jeff T Leek (2017). crsra: A package for cleaning and analyzing Coursera on-demand data. https://github.com/jhudsl/crsra
 
