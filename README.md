@@ -8,7 +8,7 @@ to install this package, you will need to install `devtools`.
 install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. I strive to keep the master branch on GitHub functional and working properly.
 
 ``` r
-#install.packages("devtools")
+library("devtools")
 devtools::install_github("jhudsl/crsra", build_vignettes = TRUE)
 ```
 
@@ -35,7 +35,7 @@ Then, follow the 'first steps' tutorial [here](https://wiki.postgresql.org/wiki/
 
 unzip files and set your working directory to the folder that contains the data dump (all the unzipped folders).
 
-## Update
+<!-- ## Update -->
 
 ## Importing Data
 
