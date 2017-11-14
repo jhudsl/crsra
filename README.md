@@ -75,11 +75,11 @@ all_tables[["course_item_grades"]][[1]] %>% #1 is the course number associated w
     dplyr::filter(course_item_passing_state_id == 2) %>% 
     dplyr::summarise(n = n(), grade = mean(course_item_grade_verified))
     
-# Source:   lazy query [?? x 2]
-# Database: postgres 9.6.5 [postgres@localhost:5432/data_cleaning_1507238182695]
-#      n     grade
-#  <dbl>     <dbl>
-#1 17639 0.9719599
+## Source:   lazy query [?? x 2]
+## Database: postgres 9.6.5 [postgres@localhost:5432/data_cleaning_1507238182695]
+##      n     grade
+##  <dbl>     <dbl>
+##1 17639 0.9719599
 ```
 
 <!--- ## Common mistakes --->
