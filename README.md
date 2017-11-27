@@ -12,28 +12,27 @@ library("devtools")
 devtools::install_github("jhudsl/crsra", build_vignettes = TRUE)
 ```
 
+## Installation
+
 This package is written in R and while it creates databases in PostgreSQL (postgres), it requires minimum knowledge of Linux or database management. However, to use the package you will need to have Postgres installed on your machine. 
-PostgreSQL has a community of online resources on how to download, install, and use it. Here are some resources:
+
+To install PostGreSQL on your operating system, please refer to the [official documentation](https://www.postgresql.org/download/)
+<!-- Then, follow the 'first steps' tutorial [here](https://wiki.postgresql.org/wiki/First_steps) -->
+You must also install postgresql in your command line. For instance, in MacOS you can install postgres using [homebrew](https://brew.sh/) by typing `brew install postgres` in terminal.
+
+Unzip the Coursera data files and set your working directory to the folder that contains all the unzipped folders.
+
+Once postgres is installed, make sure it is running and that you see the green check showing the posgres is running. Without postgres running you will not be able to import the data.
+
+## Why Postgres
+
+If you look at the headers that are supplied in the .html files, you see that some of these contain header specifications that are illegal in e.g. MySQL. Additionally, PostGreSQL can import CSV files pretty painlessly. Of course, you can choose to not use these header files and use another database. PostgreSQL has a community of online resources on how to download, install, and use it. Here are some resources:
 
 - http://postgresguide.com/
 
 - http://www.postgresql.org/docs/9.5/static/tutorial.html
 
 - http://www.postgresqltutorial.com/
-
-## Why Postgres
-
-If you look at the headers that are supplied in the .html files, you see that some of these contain header specifications that are illegal in e.g. MySQL. Additionally, PostGreSQL can import CSV files pretty painlessly. Of course, you can choose to not use these header files and use another database.
-
-## Installation
-
-Once postgres is installed, make sure it is running and that you see the green light showing the posgres is running. Without postgres running you will not be able to import the data.
-
-To install PostGreSQL, please refer to the [official documentation](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
-
-Then, follow the 'first steps' tutorial [here](https://wiki.postgresql.org/wiki/First_steps)
-
-unzip files and set your working directory to the folder that contains the data dump (all the unzipped folders).
 
 <!-- ## Update -->
 

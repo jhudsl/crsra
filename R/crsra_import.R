@@ -25,8 +25,8 @@ crsra_import <- function(rmd = TRUE, workdir = getwd()) {
 
         # This creates databases
         createdbname <- function(x) {
-#            temp1 <- paste("dropdb", x, sep = " ")
-#            system(temp1)
+            temp1 <- paste("dropdb", x, sep = " ")
+            system(temp1)
             temp1 <- paste("createdb", x, sep = " ")
             system(temp1)
         }
