@@ -1,6 +1,6 @@
 crsra_import <- function(rmd = TRUE, workdir = getwd()) {
 
-    packages <- c("dplyr", "DBI", "RPostgreSQL", "tidytext", "ggplot2", "reshape2", "reshape", "purrr", "plyr", "stringr", "tidytext", "rcorpora", "knitr")
+    packages <- c("dplyr", "dbplyr" "DBI", "RPostgreSQL", "tidytext", "ggplot2", "reshape2", "reshape", "purrr", "plyr", "stringr", "tidytext", "rcorpora", "knitr")
     instapack <- function(pkg){
         new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
         if (length(new.pkg))
