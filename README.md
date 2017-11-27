@@ -65,7 +65,7 @@ For user convenience, a few other functions are added to the package in addition
 
 ## Example
 
-In order to look at the number of students who passed a specific course item (course item `9W3Y2`) and their average grade in a specific course.
+In order to look at the number of students who passed a specific course item (course item `9W3Y2`) in the course "Getting and Cleaning Data" and their average grade in a specific course.
 
 ```r
 library(dplyr)
