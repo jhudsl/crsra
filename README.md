@@ -1,6 +1,6 @@
 # crsra
 
-This in an R package for cleaning and some preliminary analysis of Coursera on-demand data. The package helps create relational tables in R rather than directly importing bulky .csv files. It also run some preliminary analysis on the data. Note that this package is still under development and the auther appreciates feedback and suggestions.
+This in an R package for cleaning and some preliminary analysis of Coursera on-demand data. The package helps import and organize all the tables in R. It also run some preliminary analysis on the data. Note that this package is still under development and the auther appreciates feedback and suggestions.
 
 ## Setup
 
@@ -11,40 +11,18 @@ install the [devtools package](https://CRAN.R-project.org/package=devtools), ava
 library("devtools")
 devtools::install_github("jhudsl/crsra", build_vignettes = TRUE)
 ```
-
-## Installation
-
-This package is written in R and while it creates databases in PostgreSQL (postgres), it requires minimum knowledge of Linux or database management. However, to use the package you will need to have Postgres installed on your machine. 
-
-To install PostGreSQL on your operating system, please refer to the [official documentation](https://www.postgresql.org/download/)
-<!-- Then, follow the 'first steps' tutorial [here](https://wiki.postgresql.org/wiki/First_steps) -->
-You must also install postgresql in your command line. For instance, in MacOS you can install postgres using [homebrew](https://brew.sh/) by typing `brew install postgres` in terminal.
-
-Unzip the Coursera data files and set your working directory to the folder that contains all the unzipped folders.
-
-Once postgres is installed, make sure it is running and that you see the green check showing the posgres is running. Without postgres running you will not be able to import the data.
-
-## Why Postgres
-
-If you look at the headers that are supplied in the .html files, you see that some of these contain header specifications that are illegal in e.g. MySQL. Additionally, PostGreSQL can import CSV files pretty painlessly. Of course, you can choose to not use these header files and use another database. PostgreSQL has a community of online resources on how to download, install, and use it. Here are some resources:
-
-- http://postgresguide.com/
-
-- http://www.postgresql.org/docs/9.5/static/tutorial.html
-
-- http://www.postgresqltutorial.com/
-
 <!-- ## Update -->
 
 ## Importing Data
 
-In order to import your data dump into R, first point your working directory to the directory that contains all the unzipped course folders. Then execute the command `crsra_import()`. If you are not pointing to the correct directory, you will receive a warning and the execution will be halted. Note that the data import may take some time if the course data is large and there are several courses in your working directory. Also note that by running the `crsra_import()` command, you don't actually import any tables into R. Instead, you create a local database for easilty accessing all the tables and courses in your data. After the process is complete, you can access the tables in each course as follows.
-
-In the data, you may find users who have taken multiple roles in a specific course. For instance, they may start as a "Browser" and end up as a "Learner." In order to have a better understanding of the data, we can filter data to keep only user's most recent role. In order to apply this, pass `crsra_import(rmd = TRUE)` instead to remove duplicate roles.
+In order to import your data dump into R, first point your working directory to the directory that contains all the unzipped course folders. Then execute the command `crsra_import()`. If you are not pointing to the correct directory, you will receive a warning and the execution will be halted. Note that the data import may take some time if the course data is large and there are several courses in your working directory. Also note that by running the `crsra_import()` command, you import all tables for each individual course into R in a list called `all_tables`.
+<!--
+In the data, you may find users who have taken multiple roles in a specific course. For instance, they may start as a "Browser" and end up as a "Learner." In order to have a better understanding of the data, you can filter data to keep only user's most recent role. In order to apply this, pass `crsra_import(rmd = TRUE)` instead to remove duplicate roles.
+-->
 
 ## Calling Tables
 
-For a list of all the tables in the data download, please click [here](https://github.com/ahdvnd/crsra/blob/master/ListofTables.md). All tables can be called by the name `all_tables`. For instance, if you like to call the table `peer_comments`, you can simply execulte `all_tables[["peer_comments"]]`. If you would like to call the table for one of the courses, you may run `all_tables[["peer_comments"]][[1]]`. `1` is the first course imported in the data dump. To see the order of courses imported, check `coursenames`.
+For a list of all the tables in the data download, please click [here](./blob/master/ListofTables.md). All tables can be called by the name `all_tables`. For instance, if you like to call the table `peer_comments`, you can simply execulte `all_tables[["peer_comments"]]`. If you would like to call the table for one of the courses, you may run `all_tables[["peer_comments"]][[1]]`. `1` is the first course imported in the data dump. To see the order of courses imported, check `coursenames`.
 
 ## List of Courses
 
@@ -88,7 +66,7 @@ all_tables[["course_item_grades"]][[1]] %>% #1 is the course number associated w
 If you have any questions or feedback, please contact me at: hadavand.a[[at]]gmail[[dot]]com
 
 ## Meta
--   Please [report any issues or bugs](https://github.com/ahdvnd/crsra/issues).
+-   Please [report any issues or bugs](./issues).
 
 -   License: MIT
 
