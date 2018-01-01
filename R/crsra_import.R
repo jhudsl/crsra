@@ -7,7 +7,7 @@ crsra_import <- function(rmd = TRUE, workdir = getwd()) {
             install.packages(new.pkg, dependencies = TRUE)
         sapply(pkg, require, character.only = TRUE)
     }
-    instapack(packages)
+    suppressMessages(suppressWarnings(instapack(packages)))
 
 
     proceedstatus <- readline("The following procedure to import your data may take a while. Do you want to proceed? (y/n): ")
@@ -47,9 +47,10 @@ crsra_import <- function(rmd = TRUE, workdir = getwd()) {
 
         coursenames <<- purrr::map(1:numcourses, ~ all_tables[[.x]][["courses"]]$course_name) # Extracts course names, 85 is the number of table associated with table courses
         names(all_tables) <<- coursenames # Assigns course names to the list courses
+        partner_user_id <<- colnames(all_tables[[1]][["users"]])[1]
 
 
-
+        colnames(df)[2]
         # Since there are duplicates for membership roles (there are rows with the same jhu_user_id but different membership roles), the following lines
         # will calculate the latest membership role and keep that for the jhu_user_id and delete all other rows.
         # if (rmd == TRUE) {
