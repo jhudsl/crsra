@@ -52,18 +52,18 @@ crsra_import <- function(rmd = TRUE, workdir = getwd()) {
 
         # Since there are duplicates for membership roles (there are rows with the same jhu_user_id but different membership roles), the following lines
         # will calculate the latest membership role and keep that for the jhu_user_id and delete all other rows.
-        if (rmd == TRUE) {
-            for (i in 1:numcourses) {
-                all_tables[[i]][["course_memberships"]] <<- all_tables[[i]][["course_memberships"]] %>%
-                    dplyr::filter(course_membership_role!="INSTRUCTOR") %>%
-                    dplyr::filter(course_membership_role!="MENTOR") %>%
-                    dplyr::group_by(jhu_user_id) %>%
-                    dplyr::filter(course_membership_ts == max(course_membership_ts))
-            }
-        } else {
-            message("Warning: There might be duplicate students since each student can take multiple roles")
-        }
-        message(paste0(numcourses, " database(s) created and running:"))
+        # if (rmd == TRUE) {
+        #     for (i in 1:numcourses) {
+        #         all_tables[[i]][["course_memberships"]] <<- all_tables[[i]][["course_memberships"]] %>%
+        #             dplyr::filter(course_membership_role!="INSTRUCTOR") %>%
+        #             dplyr::filter(course_membership_role!="MENTOR") %>%
+        #             dplyr::group_by(jhu_user_id) %>%
+        #             dplyr::filter(course_membership_ts == max(course_membership_ts))
+        #     }
+        # } else {
+        #     message("Warning: There might be duplicate students since each student can take multiple roles")
+        # }
+        message(" The following courses are loaded:")
         print(paste0(coursenames))
     }
 }
