@@ -18,7 +18,7 @@ crsra_progress <- function(){
 
             temp <- x %>%
                 dplyr::filter(!is.na(course_progress_ts)) %>%
-                dplyr::group_by(jhu_user_id) %>%
+                dplyr::group_by(.[[3]]) %>% # 3 is the index of the column referring to partner_user_id
                 dplyr::filter(course_progress_ts == max(course_progress_ts)) %>% # only to record the last activity
                 dplyr::left_join(y, by = "course_item_id", `copy`=TRUE) %>% # so that we know the name of the course item
                 dplyr::group_by(item_rank) %>%
