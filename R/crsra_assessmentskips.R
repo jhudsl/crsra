@@ -4,8 +4,8 @@ crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
 
     skippers <- function(x, y, z) {
         temp <- z %>%
-            dplyr::left_join(x, by="jhu_user_id", `copy`=TRUE) %>%
-            dplyr::left_join(y, by="jhu_user_id", `copy`=TRUE) %>%
+            dplyr::left_join(x, by=partner_user_id, `copy`=TRUE) %>%
+            dplyr::left_join(y, by=partner_user_id, `copy`=TRUE) %>%
             dplyr::filter(!is.na(peer_skip_type))
 
         if (bygender == TRUE) {
@@ -22,7 +22,7 @@ crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
         }
 
     }
-    skiptable <- purrr::map(1:numcourses, ~ skippers(all_tables[["course_memberships"]][[.x]], all_tables[["peer_skips"]][[.x]], all_tables[["users"]][[.x]]))
+    skiptable <- purrr::map(1:numcourses, ~ skippers(all_tables[[.x]][["course_memberships"]], all_tables[[.x]][["peer_skips"]], all_tables[[.x]][["users"]]))
     names(skiptable) <- coursenames
 
     if (wordcount == TRUE) {
@@ -38,7 +38,7 @@ crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
 
         }
 
-        word_count <- purrr::map(1:numcourses, ~ word_cloud(all_tables[["peer_comments"]][[.x]]))
+        word_count <- purrr::map(1:numcourses, ~ word_cloud(all_tables[[.x]][["peer_comments"]]))
         names(word_count) <- coursenames
 
         return(list(skiptable, word_count))

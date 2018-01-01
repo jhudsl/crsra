@@ -50,7 +50,7 @@ crsra_import <- function(rmd = TRUE, workdir = getwd()) {
         partner_user_id <<- colnames(all_tables[[1]][["users"]])[1]
 
 
-        colnames(df)[2]
+
         # Since there are duplicates for membership roles (there are rows with the same jhu_user_id but different membership roles), the following lines
         # will calculate the latest membership role and keep that for the jhu_user_id and delete all other rows.
         # if (rmd == TRUE) {

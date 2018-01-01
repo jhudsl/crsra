@@ -3,7 +3,7 @@
 crsra_membershares <- function(groupby = "roles") {
      membershares <- function(x, z) {
          temp <- z %>%
-             dplyr::left_join(x, by="jhu_user_id", `copy`=TRUE)
+             dplyr::left_join(x, by=partner_user_id, `copy`=TRUE)
          if (groupby == "roles") {
              temp %>%
                  dplyr::filter(!is.na(course_membership_role)) %>%
@@ -58,7 +58,7 @@ crsra_membershares <- function(groupby = "roles") {
          }
 
      }
-     membertable <- purrr::map(1:numcourses, ~ membershares(all_tables[["course_memberships"]][[.x]], all_tables[["users"]][[.x]]))
+     membertable <- purrr::map(1:numcourses, ~ membershares(all_tables[[.x]][["course_memberships"]], all_tables[[.x]][["users"]]))
      names(membertable) <- coursenames
      return(membertable)
      #' ggplot(temp, aes(course_membership_role)) + geom_bar(aes(weight = freq))
