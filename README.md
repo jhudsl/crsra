@@ -22,11 +22,7 @@ In the data, you may find users who have taken multiple roles in a specific cour
 
 ## Calling Tables
 
-For a list of all the tables in the data download, please click [here](./blob/master/ListofTables.md). All tables can be called by the name `all_tables`. For instance, if you like to call the table `peer_comments`, you can simply execulte `all_tables[["peer_comments"]]`. If you would like to call the table for one of the courses, you may run `all_tables[["peer_comments"]][[1]]`. `1` is the first course imported in the data dump. To see the order of courses imported, check `coursenames`.
-
-## List of Courses
-
-If you are importing data for multiple courses (or a specialization), you do not have to specify the names of the courses. *crsra* will automatically load the courses names from the `courses` table incuded in the data dump of each course. To see a list of all the courses imported, you can call them by `coursenames`.
+For a list of all the tables in the data download, please click [here](https://github.com/jhudsl/crsra/blob/master/ListofTables.md). All tables can be called using `all_tables[["course_name"]][["table_name"]]`. For instance, if you like to call the table `peer_comments` in the course Regression Models, you can simply execulte `all_tables[["Regression Models"]][["peer_comments"]]`. To see a list of courses imported by the `crsra_import()` command check the variable `coursenames`. To see a list of all the tables check the variable `tablenames`.
 
 ## List of Functions
 
@@ -47,16 +43,15 @@ In order to look at the number of students who passed a specific course item (co
 ```r
 library(dplyr)
 
-all_tables[["course_item_grades"]][[1]] %>% #1 is the course number associated with the course *Getting and Cleaning Data* in our example.
-    dplyr::filter(course_item_id == "9W3Y2") %>% 
+all_tables[["Regression Models"]][["course_item_grades"]] %>%
+    dplyr::filter(course_item_id == "67c1O") %>% 
     dplyr::filter(course_item_passing_state_id == 2) %>% 
     dplyr::summarise(n = n(), grade = mean(course_item_grade_verified))
-    
-## Source:   lazy query [?? x 2]
-## Database: postgres 9.6.5 [postgres@localhost:5432/data_cleaning_1507238182695]
+
+## A tibble: 1 x 2
 ##      n     grade
-##  <dbl>     <dbl>
-##1 17639 0.9719599
+##   <int>    <dbl>
+## 1  8640 0.9556052
 ```
 
 <!--- ## Common mistakes --->
@@ -66,7 +61,7 @@ all_tables[["course_item_grades"]][[1]] %>% #1 is the course number associated w
 If you have any questions or feedback, please contact me at: hadavand.a[[at]]gmail[[dot]]com
 
 ## Meta
--   Please [report any issues or bugs](./issues).
+-   Please [report any issues or bugs](https://github.com/jhudsl/crsra/issues).
 
 -   License: MIT
 
