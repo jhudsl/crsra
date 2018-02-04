@@ -1,6 +1,6 @@
 # crsra
 
-This in an R package for cleaning and some preliminary analysis of Coursera on-demand data. The package helps import and organize all the tables in R. It also run some preliminary analysis on the data. Note that this package is still under development and the auther appreciates feedback and suggestions.
+This in an R package for cleaning and some preliminary analysis of Coursera research data exports. The package helps import and organize all the tables in R. It also run some preliminary analysis on the data. Note that this package is still under development and the auther appreciates feedback and suggestions.
 
 ## Setup
 
@@ -65,5 +65,5 @@ If you have any questions or feedback, please contact me at: hadavand.a[[at]]gma
 
 -   License: MIT
 
--   To cite *crsra*, please use: Aboozar Hadavand, Jeff T Leek (2017). crsra: A package for cleaning and analyzing Coursera on-demand data. https://github.com/jhudsl/crsra
+-   To cite *crsra*, please use: Aboozar Hadavand, Jeff T Leek (2017). crsra: A package for cleaning and analyzing Coursera research data exports. https://github.com/jhudsl/crsra
 
