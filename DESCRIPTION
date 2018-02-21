@@ -1,7 +1,7 @@
 Package: crsra
 Title: A package for cleaning and analyzing Coursera on-demand data
 Version: 0.1.0
-Author: Aboozar Hadavand [aut, cre] 
+Author: Aboozar Hadavand, Jeff Leek [aut, cre] 
 Maintainer: Aboozar Hadavand <hadavand.a@gmail.com>
 Description: This in an R package for cleaning and some preliminary analysis of Coursera on-demand data. Note that this package is still under development and the author appreciates feedback and suggestions.
 Depends: R (>= 3.4.0)
