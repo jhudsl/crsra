@@ -10,6 +10,6 @@ Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 Suggests: knitr
-Imports: dplyr, purrr, plyr, readr, stringr, tidytext, tibble
+Imports: dplyr, purrr, plyr, readr, stringr, tidytext, tibble, tm, rcorpora
 BugReports: https://github.com/jhudsl/crsra/issues
 RoxygenNote: 6.0.1

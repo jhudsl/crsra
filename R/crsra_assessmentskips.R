@@ -18,13 +18,13 @@ crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
             dplyr::filter(!is.na(peer_skip_type))
 
         if (bygender == TRUE) {
-            temp %>%
+            temp <- temp %>%
                 dplyr::filter(!is.na(reported_or_inferred_gender)) %>%
                 dplyr::group_by(peer_skip_type, reported_or_inferred_gender) %>%
                 dplyr::summarise(n = n()) %>%
                 dplyr::mutate(freq = n / sum(n))
         } else {
-            temp %>%
+            temp <- temp %>%
                 dplyr::group_by(peer_skip_type) %>%
                 dplyr::summarise(n = n()) %>%
                 dplyr::mutate(freq = n / sum(n))
@@ -35,7 +35,7 @@ crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
     word_cloud <- function(x) {
         x <- tbl_df(x)
         words <- tibble::tibble(title = x$peer_comment_text) %>%
-            unnest_tokens(word, title) %>%
+            tidytext::unnest_tokens(word, title) %>%
             dplyr::filter(!word %in% stopwords) %>%
             dplyr::count(word, sort = TRUE)
         list(knitr::kable(words[1:n,]))
