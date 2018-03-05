@@ -1,5 +1,6 @@
-#' Returns a list of tables a variable appears in
+#' List of tables a variable appears in
 #'
+#' @param x The name of the variable
 #' @return A list of tables that a specific variable appears in
 #' @examples
 #' crsra_whichtable("assessment_id")

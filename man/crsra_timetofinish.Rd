@@ -2,7 +2,7 @@
 % Please edit documentation in R/crsra_timetofinish.R
 \name{crsra_timetofinish}
 \alias{crsra_timetofinish}
-\title{Returns the time that took each learner (in days) to finish a course}
+\title{Time that took each learner (in days) to finish a course}
 \usage{
 crsra_timetofinish()
 }
@@ -10,7 +10,7 @@ crsra_timetofinish()
 A table containing \code{hashed_user_id}s with a column indicating the time (in days) that took each user to complete a course. The time is calculated as the difference between the last and first activity in the a course.
 }
 \description{
-Returns the time that took each learner (in days) to finish a course
+Time that took each learner (in days) to finish a course
 }
 \examples{
 crsra_timetofinish()

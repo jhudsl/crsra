@@ -1,4 +1,4 @@
-#' Returns the frequencies of skipping an peer-assessed submission
+#' Frequencies of skipping an peer-assessed submission
 #'
 #' @param bygender A logical value indicating whether results should be broken down by gender
 #' @param wordcount A logical value indicating whether word count should be shown in the results; default is true
@@ -7,7 +7,7 @@
 #' @examples
 #' crsra_assessmentskips()
 #' crsra_assessmentskips(bygender = TRUE, n = 10)
-
+#'
 
 crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
 
@@ -31,27 +31,27 @@ crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
         }
 
     }
+
+    word_cloud <- function(x) {
+        x <- tbl_df(x)
+        words <- tibble::tibble(title = x$peer_comment_text) %>%
+            unnest_tokens(word, title) %>%
+            dplyr::filter(!word %in% stopwords) %>%
+            dplyr::count(word, sort = TRUE)
+        list(knitr::kable(words[1:n,]))
+    }
+
+
+
     skiptable <- purrr::map(1:numcourses, ~ skippers(all_tables[[.x]][["course_memberships"]], all_tables[[.x]][["peer_skips"]], all_tables[[.x]][["users"]]))
     names(skiptable) <- coursenames
 
     if (wordcount == TRUE) {
         stopwords <- corpora("words/stopwords/en")$stopWords
-
-        word_cloud <- function(x) {
-            x <- tbl_df(x)
-            words <- tibble::tibble(title = x$peer_comment_text) %>%
-                unnest_tokens(word, title) %>%
-                dplyr::filter(!word %in% stopwords) %>%
-                dplyr::count(word, sort = TRUE)
-            list(knitr::kable(words[1:n,]))
-
-        }
-
         word_count <- purrr::map(1:numcourses, ~ word_cloud(all_tables[[.x]][["peer_comments"]]))
         names(word_count) <- coursenames
-
         return(list(skiptable, word_count))
-    } else {
+        } else {
         return(skiptable)
     }
 

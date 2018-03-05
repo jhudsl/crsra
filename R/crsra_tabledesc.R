@@ -1,5 +1,6 @@
-#' Returns description for a table
+#' Description for a table
 #'
+#' @param x The name of the table
 #' @return The description for a table based on the description provided by Coursera in the data exports
 #' @examples
 #' crsra_tabledesc("assessments")

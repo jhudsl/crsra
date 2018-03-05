@@ -1,4 +1,4 @@
-#' Returns the average course grade across different groups
+#' The average course grade across different groups
 #'
 #' @param groupby A character string indicating the how to break down grades. The default is set to \code{total} and returns the grade summary for each course. Other values are \code{gender} (for grouping by gender), \code{education} (for grouping by education level), \code{stustatus} (for grouping by student status), \code{empstatus} (for grouping by employment status), and \code{country} (for grouping by country). Note that this grouping uses the entries in the table \code{users} that is not fully populated so by grouping you lose some observations.
 #' @return A table which indicates the average grade across specified groups for each course
@@ -6,11 +6,6 @@
 #' crsra_gradesummary()
 #' crsra_gradesummary(groupby = "education")
 
-
-
-
-
-# This renders a table showing average course grade of male/female individuals
 
 crsra_gradesummary <- function(groupby = "total") {
     message("Note that maximum grade possible is 1.")

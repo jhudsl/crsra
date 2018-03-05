@@ -1,4 +1,4 @@
-#' Returns the share of learners in each course based on specific characteristics.
+#' The share of learners in each course based on specific characteristics.
 #'
 #' @param groupby A character string indicating the how to break down learners in each course. The default is set to \code{roles} and returns the share of students in each category such as Learner, Not Enrolled, Pre-Enrolled Learner, Mentor, Browser, and Instructor. Other values are \code{country} (for grouping based on country), \code{language} (for grouping based on language), \code{gender} (for grouping by gender), \code{education} (for grouping by education level), \code{stustatus} (for grouping by student status), \code{empstatus} (for grouping by employment status), and \code{country} (for grouping by country). Note that this grouping uses the entries in the table \code{users} that is not fully populated so by grouping you lose some observations.
 #' @return A table which indicates the total number and the share of students in each group for each course

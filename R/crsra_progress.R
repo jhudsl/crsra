@@ -1,4 +1,4 @@
-#' Returns an ordered list of course items and the number and share of learners who have completed the item
+#' Ordered list of course items and the number and share of learners who have completed the item
 #'
 #' @return A table which lists all the item within a course and the total number of learners and the share of learners who have completed the item.
 #' @examples

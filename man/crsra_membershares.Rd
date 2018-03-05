@@ -2,7 +2,7 @@
 % Please edit documentation in R/crsra_membershares.R
 \name{crsra_membershares}
 \alias{crsra_membershares}
-\title{Returns the share of learners in each course based on specific characteristics.}
+\title{The share of learners in each course based on specific characteristics.}
 \usage{
 crsra_membershares(groupby = "roles")
 }
@@ -13,7 +13,7 @@ crsra_membershares(groupby = "roles")
 A table which indicates the total number and the share of students in each group for each course
 }
 \description{
-Returns the share of learners in each course based on specific characteristics.
+The share of learners in each course based on specific characteristics.
 }
 \examples{
 crsra_memebershares(groupby = country)

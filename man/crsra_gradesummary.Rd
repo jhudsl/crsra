@@ -2,7 +2,7 @@
 % Please edit documentation in R/crsra_gradesummary.R
 \name{crsra_gradesummary}
 \alias{crsra_gradesummary}
-\title{Returns the average course grade across different groups}
+\title{The average course grade across different groups}
 \usage{
 crsra_gradesummary(groupby = "total")
 }
@@ -13,7 +13,7 @@ crsra_gradesummary(groupby = "total")
 A table which indicates the average grade across specified groups for each course
 }
 \description{
-Returns the average course grade across different groups
+The average course grade across different groups
 }
 \examples{
 crsra_gradesummary()

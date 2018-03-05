@@ -2,15 +2,18 @@
 % Please edit documentation in R/crsra_tabledesc.R
 \name{crsra_tabledesc}
 \alias{crsra_tabledesc}
-\title{Returns description for a table}
+\title{Description for a table}
 \usage{
 crsra_tabledesc(x)
+}
+\arguments{
+\item{x}{The name of the table}
 }
 \value{
 The description for a table based on the description provided by Coursera in the data exports
 }
 \description{
-Returns description for a table
+Description for a table
 }
 \examples{
 crsra_tabledesc("assessments")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/crsra_progress.R
 \name{crsra_progress}
 \alias{crsra_progress}
-\title{Returns an ordered list of course items and the number and share of learners who have completed the item}
+\title{Ordered list of course items and the number and share of learners who have completed the item}
 \usage{
 crsra_progress()
 }
@@ -10,7 +10,7 @@ crsra_progress()
 A table which lists all the item within a course and the total number of learners and the share of learners who have completed the item.
 }
 \description{
-Returns an ordered list of course items and the number and share of learners who have completed the item
+Ordered list of course items and the number and share of learners who have completed the item
 }
 \examples{
 crsra_progress()

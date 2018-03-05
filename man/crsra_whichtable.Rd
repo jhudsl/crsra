@@ -2,15 +2,18 @@
 % Please edit documentation in R/crsra_whichtable.R
 \name{crsra_whichtable}
 \alias{crsra_whichtable}
-\title{Returns a list of tables a variable appears in}
+\title{List of tables a variable appears in}
 \usage{
 crsra_whichtable(x)
+}
+\arguments{
+\item{x}{The name of the variable}
 }
 \value{
 A list of tables that a specific variable appears in
 }
 \description{
-Returns a list of tables a variable appears in
+List of tables a variable appears in
 }
 \examples{
 crsra_whichtable("assessment_id")

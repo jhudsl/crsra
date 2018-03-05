@@ -1,4 +1,4 @@
-#' Returns the time that took each learner (in days) to finish a course
+#' Time that took each learner (in days) to finish a course
 #'
 #' @return A table containing \code{hashed_user_id}s with a column indicating the time (in days) that took each user to complete a course. The time is calculated as the difference between the last and first activity in the a course.
 #' @examples

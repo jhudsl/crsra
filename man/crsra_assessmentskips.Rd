@@ -2,7 +2,7 @@
 % Please edit documentation in R/crsra_assessmentskips.R
 \name{crsra_assessmentskips}
 \alias{crsra_assessmentskips}
-\title{Returns the frequencies of skipping an peer-assessed submission}
+\title{Frequencies of skipping an peer-assessed submission}
 \usage{
 crsra_assessmentskips(bygender = FALSE, wordcount = TRUE, n = 20)
 }
@@ -17,9 +17,10 @@ crsra_assessmentskips(bygender = FALSE, wordcount = TRUE, n = 20)
 The outputs are frequency tables (tibble).and are shown for each specific course
 }
 \description{
-Returns the frequencies of skipping an peer-assessed submission
+Frequencies of skipping an peer-assessed submission
 }
 \examples{
 crsra_assessmentskips()
 crsra_assessmentskips(bygender = TRUE, n = 10)
+
 }
