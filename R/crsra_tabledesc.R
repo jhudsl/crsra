@@ -1,3 +1,9 @@
+#' Returns description for a table
+#'
+#' @return The description for a table based on the description provided by Coursera in the data exports
+#' @examples
+#' crsra_tabledesc("assessments")
+
 crsra_tabledesc <- function(x){
     tabdesc <- c("This table stores the interactions of the user with the assessment.",
                  "Link table between the assessment and the questions data and describe high-level information of questions in an assessment.",

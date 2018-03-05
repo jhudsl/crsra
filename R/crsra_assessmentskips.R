@@ -1,5 +1,14 @@
+#' Returns the frequencies of skipping an peer-assessed submission
+#'
+#' @param bygender A logical value indicating whether results should be broken down by gender
+#' @param wordcount A logical value indicating whether word count should be shown in the results; default is true
+#' @param n An integer indicating the number of rows for the word count
+#' @return The outputs are frequency tables (tibble).and are shown for each specific course
+#' @examples
+#' crsra_assessmentskips()
+#' crsra_assessmentskips(bygender = TRUE, n = 10)
 
-# This renders a table that shows the share of male/female individuals and their skipping categories...
+
 crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
 
     skippers <- function(x, y, z) {
