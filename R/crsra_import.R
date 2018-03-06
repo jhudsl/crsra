@@ -3,6 +3,7 @@
 #' @param workdir A character string vector indicating the directory where all the unzipped course directories are stored.
 #' @examples
 #' crsra_import()
+#' @export
 
 
 

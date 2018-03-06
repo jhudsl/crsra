@@ -5,6 +5,7 @@
 #' @examples
 #' crsra_gradesummary()
 #' crsra_gradesummary(groupby = "education")
+#' @export
 
 
 crsra_gradesummary <- function(groupby = "total") {

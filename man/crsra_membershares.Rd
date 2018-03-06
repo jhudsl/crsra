@@ -17,6 +17,4 @@ The share of learners in each course based on specific characteristics.
 }
 \examples{
 crsra_memebershares(groupby = country)
-
-ggplot(temp, aes(course_membership_role)) + geom_bar(aes(weight = freq))
 }

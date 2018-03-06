@@ -3,6 +3,7 @@
 #' @return A table which lists all the item within a course and the total number of learners and the share of learners who have completed the item.
 #' @examples
 #' crsra_progress()
+#' @export
 
 
 crsra_progress <- function(){

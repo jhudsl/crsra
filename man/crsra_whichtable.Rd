@@ -17,5 +17,4 @@ List of tables a variable appears in
 }
 \examples{
 crsra_whichtable("assessment_id")
-
 }

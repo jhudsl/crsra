@@ -4,6 +4,7 @@
 #' @return The description for a table based on the description provided by Coursera in the data exports
 #' @examples
 #' crsra_tabledesc("assessments")
+#' @export
 
 crsra_tabledesc <- function(x){
     tabdesc <- c("This table stores the interactions of the user with the assessment.",

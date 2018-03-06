@@ -4,7 +4,7 @@
 #' @return A table which indicates the total number and the share of students in each group for each course
 #' @examples
 #' crsra_memebershares(groupby = country)
-#'
+#' @export
 
 
 crsra_membershares <- function(groupby = "roles") {
@@ -68,6 +68,5 @@ crsra_membershares <- function(groupby = "roles") {
      membertable <- purrr::map(1:numcourses, ~ membershares(all_tables[[.x]][["course_memberships"]], all_tables[[.x]][["users"]]))
      names(membertable) <- coursenames
      return(membertable)
-     #' ggplot(temp, aes(course_membership_role)) + geom_bar(aes(weight = freq))
  }
 

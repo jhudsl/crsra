@@ -4,6 +4,7 @@
 #' @return A list of tables that a specific variable appears in
 #' @examples
 #' crsra_whichtable("assessment_id")
+#'@export
 #'
 crsra_whichtable <- function(x){
     if (exists("all_tables")==FALSE){
