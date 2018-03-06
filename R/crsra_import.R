@@ -1,3 +1,10 @@
+#' Imports all the .csv files into one list consisting of all the courses and all the tables within each course.
+#'
+#' @param workdir A character string vector indicating the directory where all the unzipped course directories are stored.
+#' @examples
+#' crsra_import()
+#' @export crsra_import
+
 crsra_import <- function(rmd = TRUE, workdir = getwd()) {
 
     packages <- c("dplyr", "readr", "data.table", "reshape2", "reshape", "purrr", "plyr", "stringr", "tidytext", "rcorpora", "knitr")

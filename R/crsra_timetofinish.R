@@ -1,8 +1,10 @@
-
-
-
-# This calcualtes the time to finish a course by a student
-
+#' Time that took each learner (in days) to finish a course
+#'
+#' @return A table containing \code{hashed_user_id}s with a column indicating the time (in days) that took each user to complete a course. The time is calculated as the difference between the last and first activity in the a course.
+#' @examples
+#' crsra_timetofinish()
+#' @export crsra_timetofinish
+#'
 crsra_timetofinish <- function() {
 
     finishing <- function(x, y) {

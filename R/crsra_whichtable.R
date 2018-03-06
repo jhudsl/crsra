@@ -1,4 +1,9 @@
-
+#' Returns a list of tables a variable appears in
+#'
+#' @return A list of tables that a specific variable appears in
+#' @examples
+#' crsra_whichtable("assessment_id")
+#'
 crsra_whichtable <- function(x){
     if (exists("all_tables")==FALSE){
         stop("Please import the data first using crsra_import() command!")
