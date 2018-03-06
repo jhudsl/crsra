@@ -16,7 +16,6 @@ Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 Suggests: 
-    knitr,
     utils
 Imports: 
     dplyr, 
@@ -28,6 +27,7 @@ Imports:
     tibble,
     rcorpora,
     data.table,
-    reshape
+    reshape,
+    knitr
 BugReports: https://github.com/jhudsl/crsra/issues
 RoxygenNote: 6.0.1

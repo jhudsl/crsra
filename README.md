@@ -1,6 +1,14 @@
 
 # crsra
 
+[![Travis build
+status](https://travis-ci.org/jhudsl/crsra.svg?branch=master)](https://travis-ci.org/jhudsl/crsra)
+
+muschellij2 badges:
+
+[![Travis build
+status](https://travis-ci.org/muschellij2/crsra.svg?branch=master)](https://travis-ci.org/muschellij2/crsra)
+
 This in an R package for cleaning and some preliminary analysis of
 Coursera research data exports. The package helps import and organize
 all the tables in R. It also run some preliminary analysis on the data.
