@@ -6,7 +6,7 @@
 the tables within each course.}
 \usage{
 crsra_import_course(workdir = ".", add_course_name = FALSE,
-  change_pid_column = FALSE)
+  change_pid_column = FALSE, check_problems = TRUE)
 }
 \arguments{
 \item{workdir}{A character string vector indicating the
@@ -23,5 +23,6 @@ bn = basename(zip_file)
 bn = sub("[.]zip$", "", bn)
 res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
 workdir = file.path(tempdir(), bn)
-course_tables = crsra_import_course(workdir)
+course_tables = crsra_import_course(workdir,
+check_problems = FALSE)
 }

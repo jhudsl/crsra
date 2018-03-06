@@ -15,15 +15,8 @@
 #' @return A table which indicates the total number and the share of
 #' students in each group for each course
 #' @examples
-#' zip_file = system.file("extdata",
-#' "fake_course_7051862327916.zip",
-#' package = "crsra")
-#' bn = basename(zip_file)
-#' bn = sub("[.]zip$", "", bn)
-#' res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
-#' example_import = crsra_import(workdir = tempdir())
 #' res = crsra_membershares(
-#' example_import,
+#' example_course_import,
 #' groupby = "country")
 #' @importFrom dplyr %>% filter group_by summarise mutate arrange
 #' @importFrom dplyr left_join desc n

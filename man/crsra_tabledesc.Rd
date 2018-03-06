@@ -7,7 +7,8 @@
 crsra_tabledesc(x)
 }
 \value{
-The description for a table based on the description provided by Coursera in the data exports
+The description for a table based on the
+description provided by Coursera in the data exports
 }
 \description{
 Returns description for a table

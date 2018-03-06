@@ -10,16 +10,17 @@
 #' bn = sub("[.]zip$", "", bn)
 #' res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
 #' workdir = file.path(tempdir(), bn)
-#' course_tables = crsra_import_course(workdir)
+#' course_tables = crsra_import_course(workdir,
+#' check_problems = FALSE)
 #' @export
 #' @importFrom purrr map_lgl
 #' @importFrom dplyr select_
 #' @importFrom readr problems read_csv cols
-
 crsra_import_course <- function(
     workdir = ".",
     add_course_name = FALSE,
-    change_pid_column = FALSE) {
+    change_pid_column = FALSE,
+    check_problems = TRUE) {
 
     dircheck <- file.path(workdir, "course_branch_grades.csv")
     if (!file.exists(dircheck)) {
@@ -40,28 +41,31 @@ crsra_import_course <- function(
         })
     })
     names(dfs) = stubs
-    any_probs = purrr::map(dfs, problems)
-    any_probs = purrr::map_lgl(any_probs, function(x) {
-        nrow(x) > 0
-    })
-    if (any(any_probs)) {
-        suppressWarnings({
-            suppressMessages({
-                dfs[ any_probs] = lapply(
-                    files[any_probs],
-                    read_csv, guess_max = Inf,
-                    progress = FALSE, col_types = cols())
-            })
+    if (check_problems) {
+        any_probs = purrr::map(dfs, problems)
+        any_probs = purrr::map_lgl(any_probs, function(x) {
+            nrow(x) > 0
         })
-    }
-    any_probs = purrr::map(dfs, problems)
-    any_probs = purrr::map_lgl(any_probs, function(x) {
-        nrow(x) > 0
-    })
-    if (any(any_probs)) {
-        ind = stubs[which(any_probs)]
-        warning(paste0("Data set ", paste(ind, collapse = ", "),
-                       " may still have some data errors"))
+
+        if (any(any_probs)) {
+            suppressWarnings({
+                suppressMessages({
+                    dfs[ any_probs] = lapply(
+                        files[any_probs],
+                        read_csv, guess_max = Inf,
+                        progress = FALSE, col_types = cols())
+                })
+            })
+        }
+        any_probs = purrr::map(dfs, problems)
+        any_probs = purrr::map_lgl(any_probs, function(x) {
+            nrow(x) > 0
+        })
+        if (any(any_probs)) {
+            ind = stubs[which(any_probs)]
+            warning(paste0("Data set ", paste(ind, collapse = ", "),
+                           " may still have some data errors"))
+        }
     }
 
     dfs$peer_review_part_free_responses =

@@ -29,14 +29,7 @@ students in each group for each course
 The share of learners in each course based on specific characteristics.
 }
 \examples{
-zip_file = system.file("extdata",
-"fake_course_7051862327916.zip",
-package = "crsra")
-bn = basename(zip_file)
-bn = sub("[.]zip$", "", bn)
-res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
-example_import = crsra_import(workdir = tempdir())
 res = crsra_membershares(
-example_import,
+example_course_import,
 groupby = "country")
 }
