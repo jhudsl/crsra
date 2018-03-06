@@ -7,7 +7,11 @@
 crsra_import(workdir = ".", ...)
 }
 \arguments{
-\item{workdir}{A character string vector indicating the directory where all the unzipped course directories are stored.}
+\item{workdir}{A character string vector indicating the directory
+where all the unzipped course directories are stored.}
+
+\item{...}{Additional arguments to pass to
+\code{\link{crsra_import_course}}}
 }
 \description{
 Imports all the .csv files into one list consisting of all the courses and all the tables within each course.
@@ -18,6 +22,7 @@ package = "crsra")
 bn = basename(zip_file)
 bn = sub("[.]zip$", "", bn)
 res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
-example_import = crsra_import(workdir = tempdir())
+example_import = crsra_import(workdir = tempdir(),
+check_problems = FALSE)
 
 }

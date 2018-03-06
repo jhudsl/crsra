@@ -1,5 +1,7 @@
 #' Time that took each learner (in days) to finish a course
 #'
+#' @param all_tables A list from \code{\link{crsra_import_course}} or
+#' \code{\link{crsra_import}}
 #' @return A table containing \code{hashed_user_id}s with a column indicating the time (in days) that took each user to complete a course. The time is calculated as the difference between the last and first activity in the a course.
 #' @examples
 #' crsra_timetofinish(example_course_import)
@@ -11,6 +13,9 @@ crsra_timetofinish <- function(all_tables) {
     all_tables = course_to_coursera_import(all_tables)
     numcourses = length(all_tables)
     coursenames = names(all_tables)
+
+    course_progress_ts = NULL
+    rm(list = c("course_progress_ts"))
 
     finishing <- function(x, y) {
         temp <- x %>%

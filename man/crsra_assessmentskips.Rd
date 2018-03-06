@@ -8,6 +8,9 @@ crsra_assessmentskips(all_tables, bygender = FALSE, wordcount = TRUE,
   n = 20)
 }
 \arguments{
+\item{all_tables}{A list from \code{\link{crsra_import_course}} or
+\code{\link{crsra_import}}}
+
 \item{bygender}{A logical value indicating whether results should be broken down by gender}
 
 \item{wordcount}{A logical value indicating whether word count should be shown in the results; default is true}

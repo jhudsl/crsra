@@ -8,6 +8,9 @@ crsra_membershares(all_tables, groupby = c("roles", "country", "language",
   "gender", "empstatus", "education", "stustatus"))
 }
 \arguments{
+\item{all_tables}{A list from \code{\link{crsra_import_course}} or
+\code{\link{crsra_import}}}
+
 \item{groupby}{A character string indicating the how to break down learners
 in each course. The default is set to \code{roles} and returns the
 share of students in each category such as Learner, Not Enrolled,
@@ -19,6 +22,7 @@ education level), \code{stustatus} (for grouping by student status),
  \code{empstatus} (for grouping by employment status), and \code{country}
  (for grouping by country). Note that this grouping uses the entries
  in the table \code{users} that is not fully populated so by grouping
+
   you lose some observations.}
 }
 \value{

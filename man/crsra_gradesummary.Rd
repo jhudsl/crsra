@@ -8,6 +8,9 @@ crsra_gradesummary(all_tables, groupby = c("total", "country", "language",
   "gender", "empstatus", "education", "stustatus"))
 }
 \arguments{
+\item{all_tables}{A list from \code{\link{crsra_import_course}} or
+\code{\link{crsra_import}}}
+
 \item{groupby}{A character string indicating the how to break down
 grades. The default is set to \code{total} and returns the grade
 summary for each course. Other values are \code{gender} (for

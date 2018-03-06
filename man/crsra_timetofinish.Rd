@@ -6,6 +6,10 @@
 \usage{
 crsra_timetofinish(all_tables)
 }
+\arguments{
+\item{all_tables}{A list from \code{\link{crsra_import_course}} or
+\code{\link{crsra_import}}}
+}
 \value{
 A table containing \code{hashed_user_id}s with a column indicating the time (in days) that took each user to complete a course. The time is calculated as the difference between the last and first activity in the a course.
 }

@@ -1,5 +1,7 @@
 #' Frequencies of skipping an peer-assessed submission
 #'
+#' @param all_tables A list from \code{\link{crsra_import_course}} or
+#' \code{\link{crsra_import}}
 #' @param bygender A logical value indicating whether results should be broken down by gender
 #' @param wordcount A logical value indicating whether word count should be shown in the results; default is true
 #' @param n An integer indicating the number of rows for the word count
@@ -23,6 +25,9 @@ crsra_assessmentskips <- function(
     numcourses = length(all_tables)
     coursenames = names(all_tables)
 
+    peer_skip_type = reported_or_inferred_gender = NULL
+    rm(list = c("peer_skip_type", "reported_or_inferred_gender"))
+
     skippers <- function(x, y, z) {
         temp <- z %>%
             dplyr::left_join(x, by=partner_user_id, `copy`=TRUE) %>%
@@ -43,8 +48,16 @@ crsra_assessmentskips <- function(
         }
 
     }
-    skiptable <- purrr::map(1:numcourses, ~ skippers(all_tables[[.x]][["course_memberships"]], all_tables[[.x]][["peer_skips"]], all_tables[[.x]][["users"]]))
+    skiptable <- purrr::map(
+        1:numcourses,
+        ~ skippers(
+            all_tables[[.x]][["course_memberships"]],
+            all_tables[[.x]][["peer_skips"]],
+            all_tables[[.x]][["users"]]))
     names(skiptable) <- coursenames
+
+    word = title = NULL
+    rm(list = c("title", "word"))
 
     if (wordcount == TRUE) {
         stopwords <- corpora("words/stopwords/en")$stopWords
@@ -56,7 +69,6 @@ crsra_assessmentskips <- function(
                 dplyr::filter(!word %in% stopwords) %>%
                 dplyr::count(word, sort = TRUE)
             list(knitr::kable(words[1:n,]))
-
         }
 
         word_count <- purrr::map(1:numcourses, ~ word_cloud(all_tables[[.x]][["peer_comments"]]))
@@ -68,16 +80,3 @@ crsra_assessmentskips <- function(
     }
 
 }
-
-
-# afinn <- get_sentiments("afinn")
-# gh <- tbl_df(all_tables[["peer_comments"]][[1]])
-# sentiment_score <- tibble::tibble(title = gh$peer_comment_text) %>%
-#     dplyr::mutate(saved_title = title) %>%
-#     unnest_tokens(word, title) %>%
-#     dplyr::inner_join(afinn) %>%
-#     dplyr::group_by(saved_title) %>%
-#     dplyr::summarize(sentiment = sum(score)) %>%
-#     dplyr::filter(!is.na(sentiment))
-
-

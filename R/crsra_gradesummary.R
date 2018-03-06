@@ -1,5 +1,7 @@
 #' The average course grade across different groups
 #'
+#' @param all_tables A list from \code{\link{crsra_import_course}} or
+#' \code{\link{crsra_import}}
 #' @param groupby A character string indicating the how to break down
 #' grades. The default is set to \code{total} and returns the grade
 #' summary for each course. Other values are \code{gender} (for

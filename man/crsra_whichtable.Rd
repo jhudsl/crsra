@@ -4,7 +4,13 @@
 \alias{crsra_whichtable}
 \title{Returns a list of tables a variable appears in}
 \usage{
-crsra_whichtable(all_tables, table_name)
+crsra_whichtable(all_tables, col_name)
+}
+\arguments{
+\item{all_tables}{A list from \code{\link{crsra_import_course}} or
+\code{\link{crsra_import}}}
+
+\item{col_name}{The name of the column/variable to look for}
 }
 \value{
 A list of tables that a specific variable appears in
@@ -13,7 +19,5 @@ A list of tables that a specific variable appears in
 Returns a list of tables a variable appears in
 }
 \examples{
-crsra_whichtable("assessment_id")
-crsra_whichtable
-
+crsra_whichtable(example_course_import, "assessment_id")
 }

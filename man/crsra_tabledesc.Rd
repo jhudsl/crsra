@@ -6,6 +6,9 @@
 \usage{
 crsra_tabledesc(x)
 }
+\arguments{
+\item{x}{Name of the table to get the description}
+}
 \value{
 The description for a table based on the
 description provided by Coursera in the data exports

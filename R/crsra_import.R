@@ -1,13 +1,17 @@
 #' Imports all the .csv files into one list consisting of all the courses and all the tables within each course.
 #'
-#' @param workdir A character string vector indicating the directory where all the unzipped course directories are stored.
+#' @param workdir A character string vector indicating the directory
+#' where all the unzipped course directories are stored.
+#' @param ... Additional arguments to pass to
+#' \code{\link{crsra_import_course}}
 #' @examples
 #' zip_file = system.file("extdata", "fake_course_7051862327916.zip",
 #' package = "crsra")
 #' bn = basename(zip_file)
 #' bn = sub("[.]zip$", "", bn)
 #' res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
-#' example_import = crsra_import(workdir = tempdir())
+#' example_import = crsra_import(workdir = tempdir(),
+#' check_problems = FALSE)
 #'
 #' @export
 #' @importFrom purrr map

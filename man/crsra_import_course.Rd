@@ -10,7 +10,16 @@ crsra_import_course(workdir = ".", add_course_name = FALSE,
 }
 \arguments{
 \item{workdir}{A character string vector indicating the
-directory where all the unzipped course directories are stored.}
+directory where the unzipped course is stored.}
+
+\item{add_course_name}{Should a column of the course name
+be added to all the \code{data.frame}s}
+
+\item{change_pid_column}{Should the \code{partner_user_id}
+column be changed to simply say \code{"partner_user_id"}?}
+
+\item{check_problems}{Should problems with reading in the
+data be checked?}
 }
 \description{
 Imports all the .csv files into one list consisting of all

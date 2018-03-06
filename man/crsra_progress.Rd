@@ -6,6 +6,10 @@
 \usage{
 crsra_progress(all_tables)
 }
+\arguments{
+\item{all_tables}{A list from \code{\link{crsra_import_course}} or
+\code{\link{crsra_import}}}
+}
 \value{
 A table which lists all the item within a course and the total number of learners and the share of learners who have completed the item.
 }

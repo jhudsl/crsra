@@ -2,7 +2,14 @@
 #' the tables within each course.
 #'
 #' @param workdir A character string vector indicating the
-#' directory where all the unzipped course directories are stored.
+#' directory where the unzipped course is stored.
+#' @param add_course_name Should a column of the course name
+#' be added to all the \code{data.frame}s
+#' @param change_pid_column Should the \code{partner_user_id}
+#' column be changed to simply say \code{"partner_user_id"}?
+#' @param check_problems Should problems with reading in the
+#' data be checked?
+#'
 #' @examples
 #' zip_file = system.file("extdata", "fake_course_7051862327916.zip",
 #' package = "crsra")
@@ -92,8 +99,14 @@ crsra_import_course <- function(
     }
     partner_user_id = cn[ind]
     if (change_pid_column) {
-        cn[ind] = "partner_user_id"
-        colnames(dfs$users) = cn
+        dfs = lapply(dfs, function(x) {
+            cn = colnames(x)
+            if (partner_user_id %in% cn) {
+                cn[cn %in% partner_user_id] = "partner_user_id"
+            }
+            colnames(x) = cn
+            x
+        })
     }
 
     attr(dfs, "course_name") = course_name
