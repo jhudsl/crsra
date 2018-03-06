@@ -1,4 +1,11 @@
-
+#' Ordered list of course items and the number and share of learners who have completed the item
+#'
+#' @return A table which lists all the item within a course and the total number of learners and the share of learners who have completed the item.
+#' @examples
+#' crsra_progress()
+#' @export
+#'
+#'
 crsra_progress <- function(){
     proceedstatus <- readline("The following procedure to import your data may take a while since the table course_progress is likely to be large. Do you want to proceed? (y/n): ")
     if (proceedstatus == "y") {
