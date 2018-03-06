@@ -4,10 +4,22 @@
 \alias{crsra_membershares}
 \title{The share of learners in each course based on specific characteristics.}
 \usage{
-crsra_membershares(groupby = "roles")
+crsra_membershares(all_tables, groupby = c("roles", "country", "language",
+  "gender", "empstatus", "education", "stustatus"))
 }
 \arguments{
-\item{groupby}{A character string indicating the how to break down learners in each course. The default is set to \code{roles} and returns the share of students in each category such as Learner, Not Enrolled, Pre-Enrolled Learner, Mentor, Browser, and Instructor. Other values are \code{country} (for grouping based on country), \code{language} (for grouping based on language), \code{gender} (for grouping by gender), \code{education} (for grouping by education level), \code{stustatus} (for grouping by student status), \code{empstatus} (for grouping by employment status), and \code{country} (for grouping by country). Note that this grouping uses the entries in the table \code{users} that is not fully populated so by grouping you lose some observations.}
+\item{groupby}{A character string indicating the how to break down learners
+in each course. The default is set to \code{roles} and returns the
+share of students in each category such as Learner, Not Enrolled,
+Pre-Enrolled Learner, Mentor, Browser, and Instructor.
+Other values are \code{country} (for grouping based on country),
+\code{language} (for grouping based on language), \code{gender}
+(for grouping by gender), \code{education} (for grouping by
+education level), \code{stustatus} (for grouping by student status),
+ \code{empstatus} (for grouping by employment status), and \code{country}
+ (for grouping by country). Note that this grouping uses the entries
+ in the table \code{users} that is not fully populated so by grouping
+  you lose some observations.}
 }
 \value{
 A table which indicates the total number and the share of students in each group for each course
@@ -16,5 +28,13 @@ A table which indicates the total number and the share of students in each group
 The share of learners in each course based on specific characteristics.
 }
 \examples{
-crsra_memebershares(groupby = country)
+zip_file = system.file("extdata", "fake_course_7051862327916.zip",
+package = "crsra")
+bn = basename(zip_file)
+bn = sub("[.]zip$", "", bn)
+res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
+example_import = crsra_import(workdir = tempdir())
+crsra_membershares(
+example_import,
+groupby = "country")
 }

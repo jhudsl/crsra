@@ -4,7 +4,7 @@
 \alias{crsra_import}
 \title{Imports all the .csv files into one list consisting of all the courses and all the tables within each course.}
 \usage{
-crsra_import(rmd = TRUE, workdir = getwd())
+crsra_import(workdir = ".", ...)
 }
 \arguments{
 \item{workdir}{A character string vector indicating the directory where all the unzipped course directories are stored.}
@@ -13,5 +13,11 @@ crsra_import(rmd = TRUE, workdir = getwd())
 Imports all the .csv files into one list consisting of all the courses and all the tables within each course.
 }
 \examples{
-crsra_import()
+zip_file = system.file("extdata", "fake_course_7051862327916.zip",
+package = "crsra")
+bn = basename(zip_file)
+bn = sub("[.]zip$", "", bn)
+res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
+example_import = crsra_import(workdir = tempdir())
+
 }
