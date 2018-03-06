@@ -5,12 +5,23 @@
 #' @param n An integer indicating the number of rows for the word count
 #' @return The outputs are frequency tables (tibble).and are shown for each specific course
 #' @examples
-#' crsra_assessmentskips()
-#' crsra_assessmentskips(bygender = TRUE, n = 10)
-#' @export crsra_assessmentskips
+#' crsra_assessmentskips(example_course_import)
+#' crsra_assessmentskips(example_course_import, bygender = TRUE, n = 10)
+#' @export
+#' @importFrom rcorpora corpora
+#' @importFrom tibble tibble
+#' @importFrom tidytext unnest_tokens
+#' @importFrom knitr kable
 
 # This renders a table that shows the share of male/female individuals and their skipping categories...
-crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
+crsra_assessmentskips <- function(
+    all_tables,
+    bygender = FALSE, wordcount = TRUE, n = 20) {
+
+    partner_user_id = attributes(all_tables)$partner_user_id
+    all_tables = course_to_coursera_import(all_tables)
+    numcourses = length(all_tables)
+    coursenames = names(all_tables)
 
     skippers <- function(x, y, z) {
         temp <- z %>%

@@ -4,18 +4,28 @@
 \alias{crsra_gradesummary}
 \title{The average course grade across different groups}
 \usage{
-crsra_gradesummary(groupby = "total")
+crsra_gradesummary(all_tables, groupby = c("total", "country", "language",
+  "gender", "empstatus", "education", "stustatus"))
 }
 \arguments{
-\item{groupby}{A character string indicating the how to break down grades. The default is set to \code{total} and returns the grade summary for each course. Other values are \code{gender} (for grouping by gender), \code{education} (for grouping by education level), \code{stustatus} (for grouping by student status), \code{empstatus} (for grouping by employment status), and \code{country} (for grouping by country). Note that this grouping uses the entries in the table \code{users} that is not fully populated so by grouping you lose some observations.}
+\item{groupby}{A character string indicating the how to break down
+grades. The default is set to \code{total} and returns the grade
+summary for each course. Other values are \code{gender} (for
+grouping by gender), \code{education} (for grouping by education
+level), \code{stustatus} (for grouping by student status),
+\code{empstatus} (for grouping by employment status), and
+\code{country} (for grouping by country). Note that this
+grouping uses the entries in the table \code{users} that is
+not fully populated so by grouping you lose some observations.}
 }
 \value{
-A table which indicates the average grade across specified groups for each course
+A table which indicates the average grade across specified
+ groups for each course
 }
 \description{
 The average course grade across different groups
 }
 \examples{
-crsra_gradesummary()
-crsra_gradesummary(groupby = "education")
+crsra_gradesummary(example_course_import)
+crsra_gradesummary(example_course_import, groupby = "education")
 }

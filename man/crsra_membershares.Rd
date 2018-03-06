@@ -22,19 +22,21 @@ education level), \code{stustatus} (for grouping by student status),
   you lose some observations.}
 }
 \value{
-A table which indicates the total number and the share of students in each group for each course
+A table which indicates the total number and the share of
+students in each group for each course
 }
 \description{
 The share of learners in each course based on specific characteristics.
 }
 \examples{
-zip_file = system.file("extdata", "fake_course_7051862327916.zip",
+zip_file = system.file("extdata",
+"fake_course_7051862327916.zip",
 package = "crsra")
 bn = basename(zip_file)
 bn = sub("[.]zip$", "", bn)
 res = unzip(zip_file, exdir = tempdir(), overwrite = TRUE)
 example_import = crsra_import(workdir = tempdir())
-crsra_membershares(
+res = crsra_membershares(
 example_import,
 groupby = "country")
 }

@@ -4,7 +4,7 @@
 \alias{crsra_whichtable}
 \title{Returns a list of tables a variable appears in}
 \usage{
-crsra_whichtable(x)
+crsra_whichtable(all_tables, table_name)
 }
 \value{
 A list of tables that a specific variable appears in
@@ -14,5 +14,6 @@ Returns a list of tables a variable appears in
 }
 \examples{
 crsra_whichtable("assessment_id")
+crsra_whichtable
 
 }

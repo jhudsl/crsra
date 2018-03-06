@@ -25,6 +25,9 @@
 #' res = crsra_membershares(
 #' example_import,
 #' groupby = "country")
+#' @importFrom dplyr %>% filter group_by summarise mutate arrange
+#' @importFrom dplyr left_join desc n
+#' @importFrom purrr map2
 #' @export
 crsra_membershares <- function(
     all_tables,

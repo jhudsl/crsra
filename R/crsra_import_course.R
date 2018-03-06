@@ -12,6 +12,10 @@
 #' workdir = file.path(tempdir(), bn)
 #' course_tables = crsra_import_course(workdir)
 #' @export
+#' @importFrom purrr map_lgl
+#' @importFrom dplyr select_
+#' @importFrom readr problems read_csv cols
+
 crsra_import_course <- function(
     workdir = ".",
     add_course_name = FALSE,

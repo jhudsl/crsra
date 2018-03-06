@@ -1,15 +1,23 @@
 Package: crsra
 Title: A package for cleaning and analyzing Coursera on-demand data
-Version: 0.1.0
-Author: Aboozar Hadavand, Jeff Leek [aut, cre] 
-Maintainer: Aboozar Hadavand <hadavand.a@gmail.com>
-Description: This in an R package for cleaning and some preliminary analysis of Coursera on-demand data. Note that this package is still under development and the author appreciates feedback and suggestions.
+Version: 0.2
+Authors@R: c(person(given = "Aboozar", 
+    family = "Hadavand", email ="hadavand.a@gmail.com",
+    role = c("aut", "cre")), person(given = "Jeff",
+    family = "Leek", role = "aut"), 
+    person(given = "John", family = "Muschelli", role = "aut"))
+Description: Cleans and performs preliminary analysis of 
+    Coursera on-demand data. 
+    Note that this package is still under development 
+    and the author appreciates feedback and suggestions.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-Suggests: knitr
+Suggests: 
+    knitr,
+    utils
 Imports: 
     dplyr, 
     purrr, 

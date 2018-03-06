@@ -4,7 +4,7 @@
 \alias{crsra_progress}
 \title{Ordered list of course items and the number and share of learners who have completed the item}
 \usage{
-crsra_progress()
+crsra_progress(all_tables)
 }
 \value{
 A table which lists all the item within a course and the total number of learners and the share of learners who have completed the item.
@@ -13,5 +13,5 @@ A table which lists all the item within a course and the total number of learner
 Ordered list of course items and the number and share of learners who have completed the item
 }
 \examples{
-crsra_progress()
+crsra_progress(example_course_import)
 }

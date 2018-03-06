@@ -4,7 +4,8 @@
 \alias{crsra_assessmentskips}
 \title{Frequencies of skipping an peer-assessed submission}
 \usage{
-crsra_assessmentskips(bygender = FALSE, wordcount = TRUE, n = 20)
+crsra_assessmentskips(all_tables, bygender = FALSE, wordcount = TRUE,
+  n = 20)
 }
 \arguments{
 \item{bygender}{A logical value indicating whether results should be broken down by gender}
@@ -20,6 +21,6 @@ The outputs are frequency tables (tibble).and are shown for each specific course
 Frequencies of skipping an peer-assessed submission
 }
 \examples{
-crsra_assessmentskips()
-crsra_assessmentskips(bygender = TRUE, n = 10)
+crsra_assessmentskips(example_course_import)
+crsra_assessmentskips(example_course_import, bygender = TRUE, n = 10)
 }

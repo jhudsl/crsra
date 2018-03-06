@@ -4,7 +4,7 @@
 \alias{crsra_timetofinish}
 \title{Time that took each learner (in days) to finish a course}
 \usage{
-crsra_timetofinish()
+crsra_timetofinish(all_tables)
 }
 \value{
 A table containing \code{hashed_user_id}s with a column indicating the time (in days) that took each user to complete a course. The time is calculated as the difference between the last and first activity in the a course.
@@ -13,5 +13,5 @@ A table containing \code{hashed_user_id}s with a column indicating the time (in 
 Time that took each learner (in days) to finish a course
 }
 \examples{
-crsra_timetofinish()
+crsra_timetofinish(example_course_import)
 }

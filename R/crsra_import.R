@@ -10,6 +10,7 @@
 #' example_import = crsra_import(workdir = tempdir())
 #'
 #' @export
+#' @importFrom purrr map
 crsra_import <- function(workdir = ".", ...) {
 
 
