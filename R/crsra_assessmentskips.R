@@ -1,13 +1,3 @@
-#' Frequencies of skipping an peer-assessed submission
-#'
-#' @param bygender A logical value indicating whether results should be broken down by gender
-#' @param wordcount A logical value indicating whether word count should be shown in the results; default is true
-#' @param n An integer indicating the number of rows for the word count
-#' @return The outputs are frequency tables (tibble).and are shown for each specific course
-#' @examples
-#' crsra_assessmentskips()
-#' crsra_assessmentskips(bygender = TRUE, n = 10)
-#' @export
 
 # This renders a table that shows the share of male/female individuals and their skipping categories...
 crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
@@ -57,3 +47,16 @@ crsra_assessmentskips <- function(bygender = FALSE, wordcount = TRUE, n = 20) {
     }
 
 }
+
+
+# afinn <- get_sentiments("afinn")
+# gh <- tbl_df(all_tables[["peer_comments"]][[1]])
+# sentiment_score <- tibble::tibble(title = gh$peer_comment_text) %>%
+#     dplyr::mutate(saved_title = title) %>%
+#     unnest_tokens(word, title) %>%
+#     dplyr::inner_join(afinn) %>%
+#     dplyr::group_by(saved_title) %>%
+#     dplyr::summarize(sentiment = sum(score)) %>%
+#     dplyr::filter(!is.na(sentiment))
+
+
