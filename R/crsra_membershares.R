@@ -15,7 +15,8 @@
 #' @return A table which indicates the total number and the share of
 #' students in each group for each course
 #' @examples
-#' zip_file = system.file("extdata", "fake_course_7051862327916.zip",
+#' zip_file = system.file("extdata",
+#' "fake_course_7051862327916.zip",
 #' package = "crsra")
 #' bn = basename(zip_file)
 #' bn = sub("[.]zip$", "", bn)
