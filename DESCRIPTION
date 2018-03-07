@@ -11,7 +11,7 @@ Description: Cleans and performs preliminary analysis of
     Note that this package is still under development 
     and the author appreciates feedback and suggestions.
 Depends: R (>= 3.4.0)
-License: MIT + file LICENSE
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
