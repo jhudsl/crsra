@@ -1,4 +1,4 @@
-#' Example Import of a Coursera Courese
+#' Example Import of a Coursera Course
 #'
 #'
 #' @format A list with 100 elements, which are \code{data.frame}s

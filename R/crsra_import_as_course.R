@@ -5,7 +5,7 @@
 #'
 #' @return object of class \code{coursera_import}
 #' @export
-course_to_coursera_import =  function(x) {
+crsra_import_as_course =  function(x) {
     if (inherits(x, "coursera_import")) {
         return(x)
     }

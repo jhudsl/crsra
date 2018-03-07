@@ -24,7 +24,7 @@ crsra_gradesummary <- function(
                 "empstatus", "education", "stustatus")
 ) {
     partner_user_id = attributes(all_tables)$partner_user_id
-    all_tables = course_to_coursera_import(all_tables)
+    all_tables = crsra_import_as_course(all_tables)
     numcourses = length(all_tables)
     message("Note that maximum grade possible is 1.")
 

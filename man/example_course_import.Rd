@@ -3,13 +3,13 @@
 \docType{data}
 \name{example_course_import}
 \alias{example_course_import}
-\title{Example Import of a Coursera Courese}
+\title{Example Import of a Coursera Course}
 \format{A list with 100 elements, which are \code{data.frame}s
 imported from a fake Coursera class:}
 \usage{
 example_course_import
 }
 \description{
-Example Import of a Coursera Courese
+Example Import of a Coursera Course
 }
 \keyword{datasets}
