@@ -13,7 +13,6 @@
 #'  \code{empstatus} (for grouping by employment status), and \code{country}
 #'  (for grouping by country). Note that this grouping uses the entries
 #'  in the table \code{users} that is not fully populated so by grouping
-#'
 #'   you lose some observations.
 #' @return A table which indicates the total number and the share of
 #' students in each group for each course
