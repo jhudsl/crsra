@@ -9,6 +9,7 @@
 #' @importFrom dplyr group_by_ tbl_df as_data_frame data_frame
 #'
 crsra_timetofinish <- function(all_tables) {
+
     partner_user_id = attributes(all_tables)$partner_user_id
     all_tables = crsra_import_as_course(all_tables)
     numcourses = length(all_tables)
@@ -35,7 +36,9 @@ crsra_timetofinish <- function(all_tables) {
 
     timetofinish <- purrr::map(1:numcourses, ~ finishing(all_tables[[.x]][["course_progress"]], all_tables[[.x]][["course_grades"]]))
     names(timetofinish) <- coursenames
+    message("Variable timetofinish is in days.")
     return(timetofinish)
+
 
 }
 
