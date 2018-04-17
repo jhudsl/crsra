@@ -11,7 +11,7 @@ crsra_whichtable <- function(
     all_tables,
     col_name){
 
-    all_tables = course_to_coursera_import(all_tables)
+    all_tables = crsra_import_as_course(all_tables)
     inside = lapply(all_tables, function(L) {
         res = sapply(L, function(x) {
             any(col_name %in% colnames(x))
