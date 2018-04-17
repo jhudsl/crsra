@@ -3,7 +3,7 @@
 \name{crsra_import_course}
 \alias{crsra_import_course}
 \title{Imports all the .csv files into one list consisting of all
-the tables within each course.}
+the tables within the course.}
 \usage{
 crsra_import_course(workdir = ".", add_course_name = FALSE,
   change_pid_column = FALSE, check_problems = TRUE)
@@ -23,7 +23,7 @@ data be checked?}
 }
 \description{
 Imports all the .csv files into one list consisting of all
-the tables within each course.
+the tables within the course.
 }
 \examples{
 zip_file = system.file("extdata", "fake_course_7051862327916.zip",

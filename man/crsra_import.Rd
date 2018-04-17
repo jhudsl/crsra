@@ -2,7 +2,8 @@
 % Please edit documentation in R/crsra_import.R
 \name{crsra_import}
 \alias{crsra_import}
-\title{Imports all the .csv files into one list consisting of all the courses and all the tables within each course.}
+\title{Imports all the .csv files into one list consisting of all
+the courses and all the tables within each course.}
 \usage{
 crsra_import(workdir = ".", ...)
 }
@@ -14,7 +15,8 @@ where all the unzipped course directories are stored.}
 \code{\link{crsra_import_course}}}
 }
 \description{
-Imports all the .csv files into one list consisting of all the courses and all the tables within each course.
+Imports all the .csv files into one list consisting of all
+the courses and all the tables within each course.
 }
 \examples{
 zip_file = system.file("extdata", "fake_course_7051862327916.zip",

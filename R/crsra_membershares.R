@@ -14,12 +14,20 @@
 #'  (for grouping by country). Note that this grouping uses the entries
 #'  in the table \code{users} that is not fully populated so by grouping
 #'   you lose some observations.
+#' @param remove_missing Should the \code{NA} be removed from the
+#' \code{groupby} column?
 #' @return A table which indicates the total number and the share of
 #' students in each group for each course
 #' @examples
-#' res = crsra_membershares(
+#' crsra_membershares(
 #' example_course_import,
 #' groupby = "country")
+#' crsra_membershares(
+#' example_course_import,
+#' groupby = "roles", remove_missing = FALSE)
+#' crsra_membershares(
+#' example_course_import,
+#' groupby = "roles", remove_missing = TRUE)
 #' @importFrom dplyr %>% filter group_by summarise mutate arrange
 #' @importFrom dplyr left_join desc n
 #' @importFrom purrr map2
@@ -27,7 +35,8 @@
 crsra_membershares <- function(
     all_tables,
     groupby = c("roles", "country", "language", "gender",
-                "empstatus", "education", "stustatus")) {
+                "empstatus", "education", "stustatus"),
+    remove_missing = TRUE) {
     partner_user_id = attributes(all_tables)$partner_user_id
 
     all_tables = crsra_import_as_course(all_tables)
@@ -44,16 +53,20 @@ crsra_membershares <- function(
                      "stustatus" = "student_status")
     y = Total = NULL
     rm(list = c("y", "Total"))
+
     membershares <- function(x, z) {
         temp <- z %>%
             dplyr::left_join(x, by = partner_user_id, `copy`=TRUE)
         temp$y = temp[[varname]]
-        temp %>%
-            dplyr::filter(!is.na(y)) %>%
+        if (remove_missing) {
+            temp = temp %>% dplyr::filter(!is.na(y))
+        }
+        temp = temp %>%
             dplyr::group_by(y) %>%
-            dplyr::summarise(Total=n()) %>%
-            dplyr::mutate(Share=round(Total/sum(Total),2)) %>%
+            dplyr::summarise(Total = n()) %>%
+            dplyr::mutate(Share = round(Total/sum(Total), 2)) %>%
             dplyr::arrange(desc(Total))
+        temp
     }
     mems = lapply(all_tables, function(x) x$course_memberships)
     users = lapply(all_tables, function(x) x$users)

@@ -1,5 +1,5 @@
 Package: crsra
-Title: A package for cleaning and analyzing Coursera on-demand data
+Title: Cleaning and Analyzing Coursera Research Export Data
 Version: 0.2
 Authors@R: c(person(given = "Aboozar", 
     family = "Hadavand", email ="hadavand.a@gmail.com",
@@ -7,23 +7,23 @@ Authors@R: c(person(given = "Aboozar",
     family = "Leek", role = "aut"), 
     person(given = "John", family = "Muschelli", role = "aut"))
 Description: Cleans and performs preliminary analysis of 
-    Coursera on-demand data. 
-    Note that this package is still under development 
-    and the author appreciates feedback and suggestions.
-Depends: R (>= 3.4.0)
+    'Coursera' research export data.  These export data can be downloaded
+    as an admin on your 'Coursera' profile for the classes you host.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 Suggests: 
-    utils
+    utils,
+    testthat
 Imports: 
     dplyr, 
     purrr, 
     readr, 
+    digest,
     tidytext, 
     tibble,
     rcorpora,
     knitr
 BugReports: https://github.com/jhudsl/crsra/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000

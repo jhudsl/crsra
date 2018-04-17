@@ -5,7 +5,7 @@
 \title{The share of learners in each course based on specific characteristics.}
 \usage{
 crsra_membershares(all_tables, groupby = c("roles", "country", "language",
-  "gender", "empstatus", "education", "stustatus"))
+  "gender", "empstatus", "education", "stustatus"), remove_missing = TRUE)
 }
 \arguments{
 \item{all_tables}{A list from \code{\link{crsra_import_course}} or
@@ -22,8 +22,10 @@ education level), \code{stustatus} (for grouping by student status),
  \code{empstatus} (for grouping by employment status), and \code{country}
  (for grouping by country). Note that this grouping uses the entries
  in the table \code{users} that is not fully populated so by grouping
-
   you lose some observations.}
+
+\item{remove_missing}{Should the \code{NA} be removed from the
+\code{groupby} column?}
 }
 \value{
 A table which indicates the total number and the share of
@@ -33,7 +35,13 @@ students in each group for each course
 The share of learners in each course based on specific characteristics.
 }
 \examples{
-res = crsra_membershares(
+crsra_membershares(
 example_course_import,
 groupby = "country")
+crsra_membershares(
+example_course_import,
+groupby = "roles", remove_missing = FALSE)
+crsra_membershares(
+example_course_import,
+groupby = "roles", remove_missing = TRUE)
 }
