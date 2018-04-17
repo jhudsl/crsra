@@ -14,7 +14,9 @@
 #' algorithm = "sha1")
 #' @return A list that contains all the tables within each course.
 #' @export
-#' @importFrom digest dplyr data.table
+#' @importFrom digest digest
+#' @importFrom dplyr
+#' @importFrom data.table as.data.table
 
 crsra_anonymize <- function(
     all_tables,

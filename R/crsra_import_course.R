@@ -1,5 +1,5 @@
 #' Imports all the .csv files into one list consisting of all
-#' the tables within each course.
+#' the tables within the course.
 #'
 #' @param workdir A character string vector indicating the
 #' directory where the unzipped course is stored.
