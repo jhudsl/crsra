@@ -16,8 +16,7 @@ crsra_anonymize(all_tables,
 \item{col_to_mask}{The name of id column to mask.}
 
 \item{algorithm}{The algorithms to be used for anonymization;
-currently available choices are crc32, which is also the default,
-md5, sha1, sha256, sha512, xxhash32, xxhash64 and murmur32.}
+for currently available choices, see \code{\link{digest}}.}
 }
 \value{
 A list that contains all the tables within each course.

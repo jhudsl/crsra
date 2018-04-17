@@ -66,9 +66,7 @@ In the data, you may find users who have taken multiple roles in a specific cour
 
 ## Calling Tables
 
-For a list of all the tables in the data download, please click
-[here](https://github.com/jhudsl/crsra/blob/master/ListofTables.md). All
-tables can be called using
+All tables can be called using
 `all_tables[["course_name"]][["table_name"]]`. For instance, if you like
 to call the table `peer_comments` in the course Regression Models, you
 can simply execulte `all_tables[["Regression
@@ -115,15 +113,10 @@ all_tables[["Regression Models"]][["course_item_grades"]] %>%
 
 ## Feedback/Questions
 
-If you have any questions or feedback, please contact me at:
-hadavand.a\[\[at\]\]gmail\[\[dot\]\]com
+If you have any questions or feedback, please [report any issues or
+bugs](https://github.com/jhudsl/crsra/issues).
 
-## Meta
-
-  - Please [report any issues or
-    bugs](https://github.com/jhudsl/crsra/issues).
-
-  - License: MIT
+  - License: GPL-2
 
   - To cite *crsra*, please use: Aboozar Hadavand, Jeff T Leek (2017).
     crsra: A package for cleaning and analyzing Coursera research data

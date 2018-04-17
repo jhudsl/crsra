@@ -1,6 +1,6 @@
 Package: crsra
-Title: Cleaning and Analyzing Coursera Research Export Data
-Version: 0.2
+Title: Cleaning and Analyzing 'Coursera' Research Export Data
+Version: 0.2.0
 Authors@R: c(person(given = "Aboozar", 
     family = "Hadavand", email ="hadavand.a@gmail.com",
     role = c("aut", "cre")), person(given = "Jeff",
@@ -9,10 +9,10 @@ Authors@R: c(person(given = "Aboozar",
 Description: Cleans and performs preliminary analysis of 
     'Coursera' research export data.  These export data can be downloaded
     as an admin on your 'Coursera' profile for the classes you host.
+Depends: R (>= 2.10)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-VignetteBuilder: knitr
 Suggests: 
     utils,
     testthat
