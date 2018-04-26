@@ -4,3 +4,4 @@
 .Ruserdata
 .httr-oauth
 packrat/lib*/
+inst/doc

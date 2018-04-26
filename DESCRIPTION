@@ -13,10 +13,12 @@ Depends: R (>= 2.10)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Suggests: 
+Suggests:
     utils,
-    testthat
-Imports: 
+    testthat,
+    knitr,
+    rmarkdown
+Imports:
     dplyr, 
     purrr, 
     readr, 
@@ -27,3 +29,4 @@ Imports:
     knitr
 BugReports: https://github.com/jhudsl/crsra/issues
 RoxygenNote: 6.0.1.9000
+VignetteBuilder: knitr
