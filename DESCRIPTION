@@ -1,5 +1,5 @@
 Package: crsra
-Title: Tidying and Analyzing 'Coursera' Research Export Data.
+Title: Tidying and Analyzing 'Coursera' Research Export Data
 Version: 0.2.1
 Authors@R: c(person(given = "Aboozar", 
     family = "Hadavand", email ="hadavand.a@gmail.com",
@@ -16,7 +16,6 @@ LazyData: true
 Suggests:
     utils,
     testthat,
-    knitr,
     rmarkdown
 Imports:
     dplyr, 
