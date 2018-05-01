@@ -8,7 +8,7 @@ Authors@R: c(person(given = "Aboozar",
     person(given = "John", family = "Muschelli", role = "aut"))
 Description: Tidies and performs preliminary analysis of 'Coursera' research
     export data. These export data can be downloaded by anyone who has classes
-    on Coursera and wants to analyze the data.  Coursera is one of the leading 
+    on Coursera and wants to analyze the data. Coursera is one of the leading 
     providers of MOOCs and was launched in January 2012. With over 25 million 
     learners, Coursera is the most popular provider in the world being followed 
     by EdX, the MOOC provider that was a result of a collaboration between 
