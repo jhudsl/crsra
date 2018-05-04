@@ -12,3 +12,7 @@
 
 * Updated the DESCRIPTION file with more information about Coursera Inc. and 
 the potential use for the package
+
+# crsra 0.2.3
+
+* Corrected the link in the DESCRIPTION file.
