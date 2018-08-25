@@ -1,3 +1,5 @@
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/crsra) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/crsra)](http://cran.r-project.org/package=crsra)
+
 
 # crsra
 
