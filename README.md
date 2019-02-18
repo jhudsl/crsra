@@ -7,7 +7,9 @@ This in an R package for cleaning and some preliminary analysis of
 Coursera research data exports. The package helps import and organize
 all the tables in R. It also run some preliminary analysis on the data.
 Note that this package is still under development and the auther
-appreciates feedback and suggestions.
+appreciates feedback and suggestions. To contribute to this project, please fork the project and make pull requests. If you are interested in a specific functionality that the package does not currently provide, create a Github issue and detail your request.
+
+
 
 ## Setup
 
