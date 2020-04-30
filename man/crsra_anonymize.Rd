@@ -6,8 +6,11 @@
 the data set. The function is based on the function \code{digest} from the
 package \code{digest}.}
 \usage{
-crsra_anonymize(all_tables,
-  col_to_mask = attributes(all_tables)$partner_user_id, algorithm = "crc32")
+crsra_anonymize(
+  all_tables,
+  col_to_mask = attributes(all_tables)$partner_user_id,
+  algorithm = "crc32"
+)
 }
 \arguments{
 \item{all_tables}{A list from \code{\link{crsra_import_course}} or

@@ -9,6 +9,8 @@
 #' column be changed to simply say \code{"partner_user_id"}?
 #' @param check_problems Should problems with reading in the
 #' data be checked?
+#' @param include vector of tables to import, they are the lowercase
+#' names of the files without any `.csv`.  See \code{\link{crsra_table_names}}.
 #'
 #' @examples
 #' zip_file = system.file("extdata", "fake_course_7051862327916.zip",
@@ -27,11 +29,15 @@ crsra_import_course <- function(
     workdir = ".",
     add_course_name = FALSE,
     change_pid_column = FALSE,
-    check_problems = TRUE) {
+    check_problems = TRUE,
+    include = NULL) {
 
     dircheck <- file.path(workdir, "course_branch_grades.csv")
     if (!file.exists(dircheck)) {
-        msg = paste0("Did not find course_branch_grades.csv.",
+        dircheck <- file.path(workdir, "course_branch_grades.csv.gz")
+    }
+    if (!file.exists(dircheck)) {
+        msg = paste0("Did not find course_branch_grades.csv. ",
                      "Please make sure you have set your ",
                      "working directory to where the Coursera ",
                      "data dump is located.")
@@ -39,17 +45,43 @@ crsra_import_course <- function(
     }
 
     ########################################################################
-    files = list.files(pattern = ".csv$", path = workdir, full.names = TRUE)
-    stubs <- sub(pattern = "[.]csv$", replacement = "", basename(files))
+    files = list.files(
+        pattern = ".(csv|CSV)(|.gz|.GZ)$", path = workdir,
+        full.names = TRUE)
+    stubs <- sub(pattern = "[.]csv(|[.]gz|[.]GZ)$", replacement = "",
+                 basename(files))
+    if (!is.null(include)) {
+        include = tolower(include)
+        req_include = c("users", "courses")
+        sdiff = setdiff(req_include, include)
+        if (length(sdiff) > 0) {
+            message(
+                paste0("Adding in ",
+                paste(sdiff, collapse = ", "),
+                " as they are required")
+            )
+            include = c(include, sdiff)
+        }
+        keep = tolower(stubs) %in% c(include,
+                                     sub("[.]csv(|[.]gz)$", "", include))
+        if (!any(keep)) {
+            stop("include vector does not map to any files in workdir")
+        }
+        files = files[keep]
+        stubs = stubs[keep]
+    }
     suppressWarnings({
         suppressMessages({
-            dfs = purrr::map(files, read_csv, progress = FALSE,
-                             col_types = cols())
+            dfs = purrr::map(
+                files,
+                readr::read_csv,
+                progress = FALSE,
+                col_types = readr::cols())
         })
     })
     names(dfs) = stubs
     if (check_problems) {
-        any_probs = purrr::map(dfs, problems)
+        any_probs = purrr::map(dfs, readr::problems)
         any_probs = purrr::map_lgl(any_probs, function(x) {
             nrow(x) > 0
         })
@@ -59,8 +91,8 @@ crsra_import_course <- function(
                 suppressMessages({
                     dfs[ any_probs] = lapply(
                         files[any_probs],
-                        read_csv, guess_max = Inf,
-                        progress = FALSE, col_types = cols())
+                        readr::read_csv, guess_max = Inf,
+                        progress = FALSE, col_types = readr::cols())
                 })
             })
         }
@@ -75,12 +107,14 @@ crsra_import_course <- function(
         }
     }
 
-    dfs$peer_review_part_free_responses =
-        dfs$peer_review_part_free_responses %>%
-        dplyr::select_("peer_assignment_id",
-                       "peer_assignment_review_schema_part_id",
-                       "peer_review_id",
-                       "peer_review_part_free_response_text")
+    if ("peer_review_part_free_responses" %in% names(dfs)) {
+        dfs$peer_review_part_free_responses =
+            dfs$peer_review_part_free_responses %>%
+            dplyr::select_("peer_assignment_id",
+                           "peer_assignment_review_schema_part_id",
+                           "peer_review_id",
+                           "peer_review_part_free_response_text")
+    }
     course_name = dfs$courses$course_name
     if (add_course_name) {
         dfs = lapply(dfs, function(x) {
@@ -114,4 +148,16 @@ crsra_import_course <- function(
     class(dfs) = "coursera_course_import"
 
     return(dfs)
+}
+
+#' @rdname crsra_import_course
+#' @export
+crsra_table_names = function(workdir = ".") {
+    files = list.files(
+        pattern = ".(csv|CSV)(|.gz|.GZ)$", path = workdir,
+        full.names = TRUE)
+    stubs <- sub(pattern = "[.]csv(|[.]gz|[.]GZ)$", replacement = "",
+                 basename(files))
+    stubs = tolower(stubs)
+    stubs
 }

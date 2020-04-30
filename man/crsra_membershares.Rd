@@ -4,8 +4,12 @@
 \alias{crsra_membershares}
 \title{The share of learners in each course based on specific characteristics.}
 \usage{
-crsra_membershares(all_tables, groupby = c("roles", "country", "language",
-  "gender", "empstatus", "education", "stustatus"), remove_missing = TRUE)
+crsra_membershares(
+  all_tables,
+  groupby = c("roles", "country", "language", "gender", "empstatus", "education",
+    "stustatus"),
+  remove_missing = TRUE
+)
 }
 \arguments{
 \item{all_tables}{A list from \code{\link{crsra_import_course}} or

@@ -2,11 +2,19 @@
 % Please edit documentation in R/crsra_import_course.R
 \name{crsra_import_course}
 \alias{crsra_import_course}
+\alias{crsra_table_names}
 \title{Imports all the .csv files into one list consisting of all
 the tables within the course.}
 \usage{
-crsra_import_course(workdir = ".", add_course_name = FALSE,
-  change_pid_column = FALSE, check_problems = TRUE)
+crsra_import_course(
+  workdir = ".",
+  add_course_name = FALSE,
+  change_pid_column = FALSE,
+  check_problems = TRUE,
+  include = NULL
+)
+
+crsra_table_names(workdir = ".")
 }
 \arguments{
 \item{workdir}{A character string vector indicating the
@@ -20,6 +28,9 @@ column be changed to simply say \code{"partner_user_id"}?}
 
 \item{check_problems}{Should problems with reading in the
 data be checked?}
+
+\item{include}{vector of tables to import, they are the lowercase
+names of the files without any `.csv`}
 }
 \description{
 Imports all the .csv files into one list consisting of all
