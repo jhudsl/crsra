@@ -1,24 +1,23 @@
 ---
-output: github_document
+title: "Introduction to crsra"
+author: "Aboozar Hadavand, Jeffrey Leek"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_caption: yes
+
+vignette: >
+  %\VignetteIndexEntry{Introduction to crsra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-# crsra
-
-[![Travis build status](https://travis-ci.org/jhudsl/crsra.svg?branch=master)](https://travis-ci.org/jhudsl/crsra)
-
-muschellij2 badges:
-
-[![Travis build status](https://travis-ci.org/muschellij2/crsra.svg?branch=master)](https://travis-ci.org/muschellij2/crsra)
-
-This in an R package for cleaning and some preliminary analysis of Coursera research data exports. The package helps import and organize all the tables in R. It also run some preliminary analysis on the data. Note that this package is still under development and the auther appreciates feedback and suggestions.
-
-## Setup
-
-to install this package, you will need to install `devtools`. Install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. 
-
-```r
-library("devtools")
-devtools::install_github("jhudsl/crsra", build_vignettes = TRUE)
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning=FALSE
+)
 ```
 
 ## Introduction
@@ -55,7 +54,7 @@ Figure below shows different types of research data exports provided by Coursera
 While Coursera provides tools for creating PostgreSQL databases in a docker container,^[The tool is called `courseraresearchexports` and can be found at [https://github.com/coursera/courseraresearchexports](https://github.com/coursera/courseraresearchexports)] as we mentioned earlier, importing data for analysis remains to be a challenge for researchers with limited experience with relational databases. Moreover, such tools are usually not platform independent.^[In an initial version of `crsra` based on PostgreSQL, we had the problem of some team members not being able to set up the database correctly on their PCs.]
 
 
-![Major relationships between table groups, with minor connections omitted (Source: Coursera)](vignettes/datatables.png){width=700px}
+![Major relationships between table groups, with minor connections omitted (Source: Coursera)](datatables.png){width=700px}
 
 
 ## The `crsra` Package
@@ -178,16 +177,132 @@ ttf <- crsra_timetofinish(my_import)
 ```
 
 
-![Density plots for time to finish defined as the time difference between the first and last activities across three courses](vignettes/timetofinish.png){width=600px}
+![Density plots for time to finish defined as the time difference between the first and last activities across three courses](timetofinish.png){width=600px}
+
+In the table called `users`, Coursera provides a field for student status of the learner including full-time and part-time students and those who are not degree students. We can look at how time to finish is different for groups with different student status. Figure below reports this for the course *Getting and Cleaning Data* and shows that part-time students take longer to finish the course.
+
+
+```{r, eval=FALSE}
+ttf_status <- ttf %>% 
+    .[["Getting and Cleaning Data"]] %>% 
+    left_join(my_import[["Getting and Cleaning Data"]][["users"]], 
+                     by = "jhu_user_id", `copy`=TRUE) %>% 
+    filter(!is.na(student_status))
+```
+
+![Density plots for time to finish for learners with different student statuses in the course Getting and Cleaning Data](stustatus.png){width=600px}
 
 
 
-## Feedback/Questions
+Our next step is to understand student progress in the courses. One of the factors that distinguish MOOCs from traditional classrooms is the flexibility in advancing through the course. While in traditional education the class length, pace, and completion dates are determined by the instructor of the course, in MOOCs it is the student who, for the most part, has the freedom to choose these factors. We can then look at how many course items students pass in the first week of course activity. One obvious but yet interesting finding is large variations across students. For instance, if we look at the course *Getting and Cleaning Data*, we can use the following code to find the number of course items completed in the first week of course activity. The course has roughly 40 items including lectures and assignments. The variable `nweek1` captures the number of passed course items in the first week of course activity, calculated as one week after a student's first activity in the class. The density plot in Figure below represents the variations across students. For a majority of learners, the number of passed course items in the first week is two. However, the number of those who finish more than ten items in the first course is significant. Also interesting is the double-peak shape of the density plot. It is interesting to see that there are more people who stop after completing twelve course items in the first week than there are who stop after completing seven course items. This indicates an interesting structural change in students' pace between course items 7 and 12. 
 
-If you have any questions or feedback, please [report any issues or bugs](https://github.com/jhudsl/crsra/issues).
 
--   License: GPL-2
+```{r eval=FALSE}
+passed_items <- my_import %>% 
+    .[["Getting and Cleaning Data"]] %>% 
+    .[["course_progress"]] %>%
+    group_by(jhu_user_id) %>%
+    # 604800 is the number of seconds in a week
+    filter(course_progress_ts <= min(course_progress_ts) + 604800) %>% 
+    summarise(nweek1 = n())
+```
 
--   To cite *crsra*, please use: Aboozar Hadavand, Jeff T Leek, and John Muschelli (2018). crsra: A Package for Tidying and Analyzing 'Coursera' Research Export Data. https://github.com/jhudsl/crsra
 
-## Footnotes
+![Density plot for the number of passed items in the first week of course activity for the course Getting and Cleaning Data](passeditems.png){width=600px}
+
+
+A third interesting variable to look at when studying students' progress in MOOCs is the time gaps between each session. In this exercise, we looked at the time lapsed between each two consecutive course items for each learner throughout the course *Getting and Cleaning Data*. We used the following code for the analysis. Note that we have ranked course items based on the time stamp when a student passes them and not based on their natural order defined by the course instructor.
+
+```{r eval=FALSE}
+gaps <- my_import %>% 
+    .[["Getting and Cleaning Data"]] %>% 
+    .[["course_progress"]] %>%
+    # 2 is an indicator that the course item is completed
+    filter(course_progress_state_type_id == 2) %>% 
+    group_by(jhu_user_id, course_item_id) %>%
+    # This is for keeping only the latest event for each course item
+    filter(course_progress_ts == max(course_progress_ts)) %>%
+    ungroup() %>%
+    arrange(jhu_user_id, course_progress_ts) %>%
+    group_by(jhu_user_id) %>%
+    # This is for converting the time gap to hours
+    mutate(time.dif = as.numeric(course_progress_ts - 
+                                            lag(course_progress_ts))/3600) %>%
+    filter(!is.na(time.dif)) %>% 
+    filter(time.dif != Inf | time.dif != -Inf)
+```
+
+The following figure shows student progress in the course Getting and Cleaning Data for three sample students. The vertical axis is the gap between two consecutive sessions in hours. These three students are chosen intentionally to show three different learning paths. Panel A shows progress for a student with short gaps between sessions for the first half of the course and longer gaps towards the end. We call this pattern "slowing down" pattern. This pattern is typical of many students in this course. Panel B shows progress for a student with short gaps between sessions in the beginning and the end of the course and longer gaps in the middle. Students in this group are not as common as the first group. Finally, Panel C shows progress for a student with no apparent pattern in their progress throughout the course. Only a small group of students follow this pattern in our data.  
+
+
+![Student progress through the course Getting and Cleaning Data for three sample students. The vertical axis shows the time gap between completing an item and the next item in hours.](sampleprogress.png){width=600px}
+
+
+Let us look at the average gap between sessions for the first and the second half of the course. We can then calculate how much the average session gap changes from the first half to the second. Across our sample of students who registered for the course, the average change in session gap from the second half to the second half is positive and equal to 132 percent. In other words, the gap between session more than doubles from the first half of the course to the second half. Figure below shows the density plot of this statistic across our sample. The long right tail in the Figure supports the fact that most students follow the slowing-down pattern. However, the Figure also shows that there are students who speed up during the second half of the semester.
+
+
+![Percentage change in time gaps in course progress between the first and the second half of the course Getting and Cleaning Data](timegapchange.png){width=600px}
+
+
+We can do a similar analysis for some subgroups of our sample. Some of the most interesting categories are gender, educational attainment, and whether the learner paid for taking the course. The variable `was_payment` in the table `users_courses__certificate_payments` captures whether the learner has ever paid for a course certificate. This purchase could be a "single payment" for the course or a "bulk payment" for a specialization that contains the course. The following code is used for the analysis of payers and non-payers and the results for all categories are shown in Table below.
+
+
+```{r eval=FALSE}
+gaps_payment <- gaps %>%
+    group_by(jhu_user_id) %>%
+    summarise(avgtime = mean(time.dif)) %>%
+    inner_join(my_import[["Getting and Cleaning Data"]][["course_grades"]],
+                      by = "jhu_user_id", `copy`=TRUE) %>%
+    filter(course_passing_state_id %in% c(1, 2)) %>%
+    left_join(
+        my_import[["Getting and Cleaning Data"]][["users_courses__certificate_payments"]],
+        by = "jhu_user_id", `copy`=TRUE) %>%
+    filter(!is.na(was_payment)) %>%
+    group_by(was_payment) %>%
+    summarise(avggap=mean(avgtime))
+```
+
+
+
+| Categories              | Average gap in hours               |
+|-------------------------|------------------------------------|
+| Gender                  | Female: 39                         |
+|                         | Male: 36                           |
+| Educational Attainment  | Less than high school: 152         |
+|                         | High school diploma: 39            |
+|                         | College (no degree): 39            |
+|                         | Associate degree: 23               |
+|                         | Bachelor's degree: 32              |
+|                         | Master's degree: 38                |
+|                         | Professional degree: 22            |
+|                         | Doctoral degree: 34                |
+| Paid for the course?    | Yes: 36                            |
+|                         | No: 39                             |
+
+
+The last exercise in our analysis is to study how Coursera's change in policy from a pay-per-course business model to a subscription model changed students' progression throughout the course. On October 30, 2016, Coursera introduced a new payment system through which they allowed students to purchase access to all content in a specialization on a month-by-month or annual basis.^[Coursera. Coursera blog: Introducing subscriptions for specializations. https://blog.coursera.org/ introducing-subscriptions-for-specializations/, Accessed: 2018-02-08.] As a result, the student would only pay for the amount of time they need to learn the material. This system replaced the existing model where students would pay up front for each course regardless of how long it took them to finish the course. A question to ask is whether the switch to this system where payments are tied to the length of time it takes students to complete the class speeds up learning paces. The following code calculates the average number of course items passed in the first week of activity for the two groups: those who enrolled in the course before October 30, 2016, and those who joined after. We hypothesize that those who pay monthly are more likely to finish more items in the first week than those who pay a fixed price.
+
+```{r eval=FALSE}
+passed_items_policy <- passed_items %>%
+    left_join(my_import[["Getting and Cleaning Data"]][["course_memberships"]], 
+                     by = "jhu_user_id", `copy`=TRUE) %>%
+    filter(!is.na(course_membership_ts)) %>%
+    mutate(subscription = ifelse(course_membership_ts < "2016-11-01 00:00:00", 
+                                        "before", "after")) %>%
+    group_by(subscription) %>%
+    summarise(subnw = mean(nweek1))
+```
+
+The results suggest that those who enrolled before the policy change on average passed three courses less than the group who enrolled after (9 versus 12). The following figure shows the density plot of the number of passed items in the first week of activity for the two groups. This comparison, however, has a caveat: there is some selection bias since those who enrolled before, and those who registered after October 2016 may be fundamentally different.
+
+![Density plots for the number of passed items in the first week of course activity for Getting and Cleaning Data for those who enrolled in the course before October 30, 2016, and those who enrolled after](policy.png){width=600px}
+
+
+## Discussion
+
+The `crsra` package provides tools for cleaning and analysis of Coursera's research data exports. Our motivation for the development of the package was initially to analyze student progress using JHU Data Science Specialization data. The size and messiness of data were our main challenges. In this regard, we felt the need for a tool that imports the data into R, cleans the data, and provides some analysis of the courses. We, later on, decided to make the tool available to all researchers who use Coursera's research data. 
+
+Because MOOCs are new, analyzing students' behaviors on MOOCs are essential. One of the main differences between MOOCs and traditional college classrooms is how students progress through MOOCs. While the order and length of course content and the pace at which they are taught are chosen by the instructor in classrooms, in MOOCs, it is the student who determines when and how to learn the material. We, therefore, used the `crsra` package to analyze student progress and pace in one of a sample of courses offered by JHU. We hope the package and the analysis provided in this paper will pave the way for future studies on student behaviors on MOOCs.
+
+
+
