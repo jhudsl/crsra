@@ -4,9 +4,11 @@
 \name{tabdesc}
 \alias{tabdesc}
 \title{Table Descriptions}
-\format{A vector table descriptions, where the names
+\format{
+A vector table descriptions, where the names
 of the table descriptions is the name of the
-tables in an import.}
+tables in an import.
+}
 \usage{
 tabdesc
 }

@@ -4,8 +4,7 @@
 \alias{crsra_assessmentskips}
 \title{Frequencies of skipping an peer-assessed submission}
 \usage{
-crsra_assessmentskips(all_tables, bygender = FALSE, wordcount = TRUE,
-  n = 20)
+crsra_assessmentskips(all_tables, bygender = FALSE, wordcount = TRUE, n = 20)
 }
 \arguments{
 \item{all_tables}{A list from \code{\link{crsra_import_course}} or

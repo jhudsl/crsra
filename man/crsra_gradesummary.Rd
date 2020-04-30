@@ -4,8 +4,11 @@
 \alias{crsra_gradesummary}
 \title{The average course grade across different groups}
 \usage{
-crsra_gradesummary(all_tables, groupby = c("total", "country", "language",
-  "gender", "empstatus", "education", "stustatus"))
+crsra_gradesummary(
+  all_tables,
+  groupby = c("total", "country", "language", "gender", "empstatus", "education",
+    "stustatus")
+)
 }
 \arguments{
 \item{all_tables}{A list from \code{\link{crsra_import_course}} or

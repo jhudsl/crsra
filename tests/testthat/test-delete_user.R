@@ -11,4 +11,13 @@ test_that("Deleting users", {
     res = crsra_delete_user(example_course_import, users = del_user)
     expect_false(del_user %in% res$users$jhu_user_id)
 
+
+    ###############
+    # Pass in vector of users
+    del_user = example_course_import$users$jhu_user_id[1:2]
+    expect_true(all(del_user %in% example_course_import$users$jhu_user_id))
+
+    res = crsra_delete_user(example_course_import, users = del_user)
+    expect_false(all(del_user %in% res$users$jhu_user_id))
+
 })
