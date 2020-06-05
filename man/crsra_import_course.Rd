@@ -30,7 +30,7 @@ column be changed to simply say \code{"partner_user_id"}?}
 data be checked?}
 
 \item{include}{vector of tables to import, they are the lowercase
-names of the files without any `.csv`}
+names of the files without any `.csv`.  See \code{\link{crsra_table_names}}.}
 }
 \description{
 Imports all the .csv files into one list consisting of all
