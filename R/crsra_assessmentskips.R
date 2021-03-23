@@ -63,7 +63,7 @@ crsra_assessmentskips <- function(
         stopwords <- corpora("words/stopwords/en")$stopWords
 
         word_cloud <- function(x) {
-            x <- tbl_df(x)
+            x <- dplyr::as_tibble(x)
             words <- tibble::tibble(title = x$peer_comment_text) %>%
                 unnest_tokens(word, title) %>%
                 dplyr::filter(!word %in% stopwords) %>%

@@ -4,21 +4,20 @@ output: github_document
 
 # crsra
 
-[![Travis build status](https://travis-ci.org/jhudsl/crsra.svg?branch=master)](https://travis-ci.org/jhudsl/crsra)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/jhudsl/crsra/workflows/R-CMD-check/badge.svg)](https://github.com/jhudsl/crsra/actions)
+<!-- badges: end -->
 
-muschellij2 badges:
 
-[![Travis build status](https://travis-ci.org/muschellij2/crsra.svg?branch=master)](https://travis-ci.org/muschellij2/crsra)
-
-This in an R package for cleaning and some preliminary analysis of Coursera research data exports. The package helps import and organize all the tables in R. It also run some preliminary analysis on the data. Note that this package is still under development and the auther appreciates feedback and suggestions.
+This in an R package for cleaning and some preliminary analysis of Coursera research data exports. The package helps import and organize all the tables in R. It also run some preliminary analysis on the data. Note that this package is still under development and the authors appreciate feedback and suggestions.
 
 ## Setup
 
-to install this package, you will need to install `devtools`. Install the [devtools package](https://CRAN.R-project.org/package=devtools), available from CRAN. 
+To install this package from GitHub, you will need to install `remotes`. Install the [remotes package](https://CRAN.R-project.org/package=remotes), available from CRAN. 
 
 ```r
-library("devtools")
-devtools::install_github("jhudsl/crsra", build_vignettes = TRUE)
+library("remotes")
+remotes::install_github("jhudsl/crsra", build_vignettes = TRUE)
 ```
 
 ## Introduction

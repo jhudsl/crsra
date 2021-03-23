@@ -1,30 +1,32 @@
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/crsra) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/crsra)](http://cran.r-project.org/package=crsra)
-
 
 # crsra
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jhudsl/crsra/workflows/R-CMD-check/badge.svg)](https://github.com/jhudsl/crsra/actions)
+<!-- badges: end -->
 
 This in an R package for cleaning and some preliminary analysis of
 Coursera research data exports. The package helps import and organize
 all the tables in R. It also run some preliminary analysis on the data.
-Note that this package is still under development and the auther
-appreciates feedback and suggestions. To contribute to this project, please fork the project and make pull requests. If you are interested in a specific functionality that the package does not currently provide, create a Github issue and detail your request.
-
-
+Note that this package is still under development and the authors
+appreciate feedback and suggestions.
 
 ## Setup
 
-to install this package, you will need to install `devtools`. Install
-the [devtools package](https://CRAN.R-project.org/package=devtools),
-available from CRAN.
+To install this package from GitHub, you will need to install `remotes`.
+Install the [remotes
+package](https://CRAN.R-project.org/package=remotes), available from
+CRAN.
 
 ``` r
-library("devtools")
-devtools::install_github("jhudsl/crsra", build_vignettes = TRUE)
+library("remotes")
+remotes::install_github("jhudsl/crsra", build_vignettes = TRUE)
 ```
 
 ## Introduction
 
-Research on Massive Open Online Courses (MOOCs) is young.\[1\] studied
+Research on Massive Open Online Courses (MOOCs) is young.[1] studied
 literature published on MOOCs through 2015 and found that the number of
 articles published on the subject increased from 1 in 2008 to 170 in
 2015. More research is needed to fully understand the effectiveness,
@@ -32,10 +34,9 @@ reach, limits, and the potential of MOOCs. However, the main challenges
 in studying MOOCs remains to be data. Data on MOOCs are not usually
 publicly available since it is owned by private providers and there are
 concerns about the privacy of students. More importantly, as Lopez et.
-al\[2\] point out, the size and complexity of MOOC data is an
-overwhelming challenge to many researchers. Therefore, it is imperative
-to provide tools that pave the way for more research on the new subject
-of MOOCs.
+al[2] point out, the size and complexity of MOOC data is an overwhelming
+challenge to many researchers. Therefore, it is imperative to provide
+tools that pave the way for more research on the new subject of MOOCs.
 
 This paper introduces a package called `crsra` based on the statistical
 software R to help clean and analyze massive loads of data from the
@@ -45,7 +46,7 @@ the most popular provider in the world being followed by EdX, the MOOC
 provider that was a result of a collaboration between Harvard University
 and MIT, with over 10 million users. Coursera has over 150 university
 partners from 29 countries and offers a total of 2000+ courses from
-computer science to philosophy.\[3\] Besides, Coursera offers 180+
+computer science to philosophy.[3] Besides, Coursera offers 180+
 specialization, Coursera’s credential system, and four fully online
 Masters degrees. A typical course on Coursera includes recorded video
 lectures, graded assignment, quizzes, and discussion forums.
@@ -64,25 +65,24 @@ allows for connecting learner grades and progress across courses.
 
 The advantages of the package are as follows:
 
-  - faster loading of data for analysis
-  - efficient method for combining data from multiple courses and even
+-   faster loading of data for analysis
+-   efficient method for combining data from multiple courses and even
     across institutions. This is important since although MOOC
     researchers have access to thousands of students in their sample,
     few studies benefit from data across multiple courses and
     institutions. Such analysis helps draw more robust conclusions about
-    student behaviors.\[4\]
-  - provision of a set of functions for analyzing student behaviors.
+    student behaviors.[4]
+-   provision of a set of functions for analyzing student behaviors.
 
 ## Coursera Research Data
 
 There are five types of research data export for each course. Table
 below summarizes these five types. The data are written in roughly 100
 tables containing information such as course content, students’
-demographic data, progress, and outcomes, and forum
-data.
+demographic data, progress, and outcomes, and forum data.
 
 | Data Type                  | Description                                                                                                                                                                                                                                                                                                                                            |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Assessment submission data | Assessment submissions of quizzes, peer review, and programming assignments by learners.                                                                                                                                                                                                                                                               |
 | Course grade data          | Contains the highest grade achieved by each learner on each required assessment as well as the time stamp of the learner’s highest-scoring submission. This table also includes each learner’s overall grade in the course.                                                                                                                            |
 | Course progress data       | Contains data documenting the time stamp for when the learner interacted with each piece of course content and the time stamps for when items were opened, completed, reopened, reattempted, etc.                                                                                                                                                      |
@@ -93,13 +93,14 @@ Figure below shows different types of research data exports provided by
 Coursera.
 
 While Coursera provides tools for creating PostgreSQL databases in a
-docker container,\[5\] as we mentioned earlier, importing data for
+docker container,[5] as we mentioned earlier, importing data for
 analysis remains to be a challenge for researchers with limited
 experience with relational databases. Moreover, such tools are usually
-not platform independent.\[6\]
+not platform independent.[6]
 
-![Major relationships between table groups, with minor connections
-omitted (Source: Coursera)](vignettes/datatables.png)
+<figure>
+<img src="vignettes/datatables.png" width="700" alt="Major relationships between table groups, with minor connections omitted (Source: Coursera)" /><figcaption aria-hidden="true">Major relationships between table groups, with minor connections omitted (Source: Coursera)</figcaption>
+</figure>
 
 ## The `crsra` Package
 
@@ -146,8 +147,7 @@ user_table <- my_import %>%
 
 A second method is to import an individual course. For this type of
 import unzip the data export for the course and set your working
-directly to the folder that contains all the csv
-tables.
+directly to the folder that contains all the csv tables.
 
 ``` r
 my_course_import <- crsra_import_course(workdir = ".", check_problems = TRUE)
@@ -203,11 +203,10 @@ my_import %>%
 
 The package also includes a few other functions in addition to the main
 `crsra_import()` function. A list of functions and their descriptions is
-provided in the table
-below.
+provided in the table below.
 
 | Function                | Description                                                                                                                                                                                                                                                                                    |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `crsra_membershares`    | Returns a summary of the total number and the shares of users in each course broken down by factors such as roles, country, language, gender, employment status, education level, and student status.                                                                                          |
 | `crsra_gradesummary`    | Returns total grade summary broken down by the factors mentioned above.                                                                                                                                                                                                                        |
 | `crsra_progress`        | Summarizes, for each course item, the total number and the share of users who ceased activity at that specific course item. The function ranks course items by their attrition.                                                                                                                |
@@ -245,20 +244,20 @@ crsra_gradesummary(my_import, groupby = "gender") %>%
 The existence of fundamental differences between traditional education
 and MOOCs has attracted a new wave of studies on students’ behavior and
 outcomes in the online world. These differences are best reflected in
-the definition of MOOCs by McAuley et al.\[7\] that “\[a\]n online
-course with the option of free and open registration, a publicly shared
+the definition of MOOCs by McAuley et al.[7] that “\[a\]n online course
+with the option of free and open registration, a publicly shared
 curriculum, and open-ended outcomes which integrates social networking,
 accessible online resources … and most significantly builds on the
 engagement of learners who self-organize their participation according
 to learning goals, prior knowledge and skills, and common interests.”
 Such differences require further research on MOOCs. Understanding how
 students progress through an education program is critical for any
-educational planning and decision making.\[8\] Models of student
-progress are needed to estimate the probability of a student completing
-a particular item in a course and predict the time required to finish a
+educational planning and decision making.[8] Models of student progress
+are needed to estimate the probability of a student completing a
+particular item in a course and predict the time required to finish a
 course. Furthermore, conventional measures of academic success and
 progress cannot be defined in the same way for MOOCs. For instance, as
-Perna et al.\[9\] state, we have limited knowledge on whether learners’
+Perna et al.[9] state, we have limited knowledge on whether learners’
 progress through a MOOC should be measured in a sequential fashion or in
 a way that captures the flexibility and freedom in learning behavior
 that is unique to MOOCs.
@@ -267,7 +266,7 @@ There are only a handful of studies on students’ progress and outcomes
 in MOOCs. Perna et al. perform a descriptive analysis of student
 progress through a set of 16 courses on Coursera. They found that most
 users accessed course content in the sequential order defined by the
-instructor of the course. Ho et al.\[10\] study 17 courses taught on EdX
+instructor of the course. Ho et al.[10] study 17 courses taught on EdX
 and found that most of the attrition in online courses happen in the
 first week of course activity (about 50 percent attrition) and that the
 average percentage of learners who cease activity in the second week
@@ -292,53 +291,53 @@ Science Capstone* a majority of students finish the course in 50 days.
 ttf <- crsra_timetofinish(my_import)
 ```
 
-![Density plots for time to finish defined as the time difference
-between the first and last activities across three
-courses](vignettes/timetofinish.png)
+<figure>
+<img src="vignettes/timetofinish.png" width="600" alt="Density plots for time to finish defined as the time difference between the first and last activities across three courses" /><figcaption aria-hidden="true">Density plots for time to finish defined as the time difference between the first and last activities across three courses</figcaption>
+</figure>
 
 ## Feedback/Questions
 
 If you have any questions or feedback, please [report any issues or
 bugs](https://github.com/jhudsl/crsra/issues).
 
-  - License: GPL-2
+-   License: GPL-2
 
-  - To cite *crsra*, please use: Aboozar Hadavand, Jeff T Leek, and John
+-   To cite *crsra*, please use: Aboozar Hadavand, Jeff T Leek, and John
     Muschelli (2018). crsra: A Package for Tidying and Analyzing
     ‘Coursera’ Research Export Data. <https://github.com/jhudsl/crsra>
 
 ## Footnotes
 
-1.  Bozkurt, Aras, Ela Akgün-Özbek, and Olaf Zawacki-Richter. “Trends
-    and patterns in massive open online courses: Review and content
-    analysis of research on MOOCs (2008-2015).” The International Review
-    of Research in Open and Distributed Learning 18.5 (2017).
+[1] Bozkurt, Aras, Ela Akgün-Özbek, and Olaf Zawacki-Richter. “Trends
+and patterns in massive open online courses: Review and content analysis
+of research on MOOCs (2008-2015).” The International Review of Research
+in Open and Distributed Learning 18.5 (2017).
 
-2.  Lopez, Glenn, et al. “Google BigQuery for Education: Framework for
-    Parsing and Analyzing edX MOOC Data.” Proceedings of the Fourth
-    (2017) ACM Conference on Learning@ Scale. ACM, 2017.
+[2] Lopez, Glenn, et al. “Google BigQuery for Education: Framework for
+Parsing and Analyzing edX MOOC Data.” Proceedings of the Fourth (2017)
+ACM Conference on Learning@ Scale. ACM, 2017.
 
-3.  <https://blog.coursera.org/about/>, Accessed: 2018-02-02
+[3] <https://blog.coursera.org/about/>, Accessed: 2018-02-02
 
-4.  Reich, Justin. “Rebooting MOOC research.” Science 347.6217 (2015):
-    34-35.
+[4] Reich, Justin. “Rebooting MOOC research.” Science 347.6217 (2015):
+34-35.
 
-5.  The tool is called `courseraresearchexports` and can be found at
-    <https://github.com/coursera/courseraresearchexports>
+[5] The tool is called `courseraresearchexports` and can be found at
+<https://github.com/coursera/courseraresearchexports>
 
-6.  In an initial version of `crsra` based on PostgreSQL, we had the
-    problem of some team members not being able to set up the database
-    correctly on their PCs.
+[6] In an initial version of `crsra` based on PostgreSQL, we had the
+problem of some team members not being able to set up the database
+correctly on their PCs.
 
-7.  McAuley, Alexander, et al. “The MOOC model for digital practice.”
-    (2010).
+[7] McAuley, Alexander, et al. “The MOOC model for digital practice.”
+(2010).
 
-8.  King, Mervyn A. Primary and secondary indicators of education.
-    Department of Applied Economics, University of Cambridge, 1972.
+[8] King, Mervyn A. Primary and secondary indicators of education.
+Department of Applied Economics, University of Cambridge, 1972.
 
-9.  Perna, Laura W., et al. “Moving through MOOCs: Understanding the
-    progression of users in massive open online courses.” Educational
-    Researcher 43.9 (2014): 421-432.
+[9] Perna, Laura W., et al. “Moving through MOOCs: Understanding the
+progression of users in massive open online courses.” Educational
+Researcher 43.9 (2014): 421-432.
 
-10. Ho, Andrew Dean, et al. “HarvardX and MITx: The first year of open
-    online courses, fall 2012-summer 2013.” (2014).
+[10] Ho, Andrew Dean, et al. “HarvardX and MITx: The first year of open
+online courses, fall 2012-summer 2013.” (2014).

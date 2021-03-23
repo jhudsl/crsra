@@ -6,7 +6,7 @@
 #' @examples
 #' crsra_timetofinish(example_course_import)
 #' @export
-#' @importFrom dplyr group_by_ tbl_df as_data_frame data_frame
+#' @importFrom dplyr group_by_ as_tibble as_data_frame data_frame
 #'
 crsra_timetofinish <- function(all_tables) {
 
@@ -24,11 +24,11 @@ crsra_timetofinish <- function(all_tables) {
             dplyr::group_by_(partner_user_id) %>%
             dplyr::summarise(maxtime = max(course_progress_ts),
                              mintime = min(course_progress_ts)) %>%
-            dplyr::tbl_df() #%>%
-            #dplyr::left_join(tbl_df(y), by=jhu_user_id, `copy`=TRUE) %>%
+            dplyr::as_tibble() #%>%
+            #dplyr::left_join(as_tibble(y), by=jhu_user_id, `copy`=TRUE) %>%
             #dplyr::filter(course_passing_state_id %in% c(1, 2))
 
-        temp2 <- tbl_df(temp)
+        temp2 <- dplyr::as_tibble(temp)
         temp2$timetofinish <- as.numeric(difftime(temp2$maxtime, temp2$mintime, units="days"))
         return(temp2)
 
@@ -47,12 +47,12 @@ crsra_timetofinish <- function(all_tables) {
 #     dplyr::filter(!is.na(course_progress_ts)) %>%
 #     dplyr::group_by(jhu_user_id) %>%
 #     dplyr::summarise(maxtime = max(course_progress_ts), mintime = min(course_progress_ts)) %>%
-#     dplyr::tbl_df()
-#     dplyr::left_join(tbl_df(all_tables[[1]][["course_grades"]]), by=jhu_user_id, `copy`=TRUE) %>%
+#     dplyr::as_tibble()
+#     dplyr::left_join(as_tibble(all_tables[[1]][["course_grades"]]), by=jhu_user_id, `copy`=TRUE) %>%
 #     dplyr::filter(course_passing_state_id %in% c(1, 2))
 #
 #
-#     temp2 <- tbl_df(temp)
+#     temp2 <- as_tibble(temp)
 #     temp2$timetofinish <- as.numeric(difftime(temp2$maxtime, temp2$mintime, units="days"))
 #     return(temp2)
 
